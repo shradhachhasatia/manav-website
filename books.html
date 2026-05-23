@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Books — Manav Agarwal</title>
+<meta name="description" content="Business books written like actual stories. The When Sally Met… series teaches Scrum, Kanban and Agile through fiction you'll actually finish."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- MOBILE MENU DRAWER OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="menuClose">✕</button>
+  <a href="workshops.html" onclick="closeMobile()">Workshops</a>
+  <a href="books.html" onclick="closeMobile()">Books</a>
+  <a href="comedy.html" onclick="closeMobile()">Comedy</a>
+  <a href="index.html#testimonials" onclick="closeMobile()">Proof</a>
+  <a href="index.html#contact" class="btn-fill" onclick="closeMobile()">Hire Manav</a>
+</div>
+
+<!-- HEADER / NAVIGATION -->
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">MANAV<span>.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="workshops.html">Workshops</a></li>
+      <li><a href="books.html" class="active">Books</a></li>
+      <li><a href="comedy.html">Comedy</a></li>
+      <li><a href="index.html#testimonials">Proof</a></li>
+    </ul>
+
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+
+    <a class="nav-cta" href="index.html#contact">Hire Manav</a>
+    <div class="nav-hamburger" id="hamburger" onclick="openMobile()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <p class="breadcrumb"><a href="index.html">Home</a> / Books</p>
+  <p class="section-eyebrow">The Library</p>
+  <h1>Business books written<br><em>like actual stories.</em></h1>
+  <p>Most agile books read like a compliance manual. Mine read like fiction. The <em>When Sally Met…</em> series follows one character through the chaos of real teams — so the frameworks stick because you actually care what happens next.</p>
+  <a class="btn-fill" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a>
+</header>
+
+<!-- BOOK DETAIL GRID -->
+<section class="books-section" id="books">
+  <div class="book-detail-grid">
+
+    <div class="book-detail-row">
+      <div class="book-visual">
+        <div class="book-spine-cover book1">
+          <div class="book-title-overlay">
+            <span class="book-brand-label">Vol. 01</span>
+            <span class="book-hero-title">When Sally Met Scrum</span>
+            <span class="book-cover-meta">M. Agarwal</span>
+          </div>
+        </div>
+      </div>
+      <div class="book-detail-body">
+        <div class="book-title">When Sally Met Scrum</div>
+        <div class="book-sub">Experience Scrum challenges through an intuitive, visual fiction story. Sally inherits a team drowning in ceremonies that mean nothing — and learns what Scrum is actually for. The perfect first read for anyone who's been "doing Scrum" without knowing why.</div>
+        <a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a>
+      </div>
+    </div>
+
+    <div class="book-detail-row">
+      <div class="book-visual">
+        <div class="book-spine-cover book2">
+          <div class="book-title-overlay">
+            <span class="book-brand-label">Vol. 02</span>
+            <span class="book-hero-title">When Sally Met Kanban</span>
+            <span class="book-cover-meta">M. Agarwal</span>
+          </div>
+        </div>
+      </div>
+      <div class="book-detail-body">
+        <div class="book-title">When Sally Met Kanban</div>
+        <div class="book-sub">A journey from chaos to clarity. Sally learns the hard way that being busy doesn't equal being productive — and discovers how visualising work and limiting WIP changes everything. Flow over heroics.</div>
+        <a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a>
+      </div>
+    </div>
+
+    <div class="book-detail-row">
+      <div class="book-visual">
+        <div class="book-spine-cover book3">
+          <div class="book-title-overlay">
+            <span class="book-brand-label">Vol. 03</span>
+            <span class="book-hero-title">When Sally Met Agile</span>
+            <span class="book-cover-meta">M. Agarwal</span>
+          </div>
+        </div>
+      </div>
+      <div class="book-detail-body">
+        <div class="book-title">When Sally Met Agile</div>
+        <div class="book-sub">Sally faces her ultimate challenge: adapting agile beyond a single team. When the frameworks collide with politics, budgets and culture, she learns that agility is a mindset — not a process block you copy-paste.</div>
+        <a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a>
+      </div>
+    </div>
+
+    <div class="book-detail-row">
+      <div class="book-visual">
+        <div class="book-spine-cover book4">
+          <div class="book-title-overlay">
+            <span class="book-brand-label">Vol. 04</span>
+            <span class="book-hero-title">The Silent Whisper</span>
+            <span class="book-cover-meta">M. Agarwal</span>
+          </div>
+        </div>
+      </div>
+      <div class="book-detail-body">
+        <div class="book-title">The Silent Whisper</div>
+        <div class="book-sub">A departure from the series. What happens to human connection when automated systems learn our desires before we do? A reflective story about technology, intimacy, and what we quietly give away.</div>
+        <a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="cta-section">
+  <p class="section-eyebrow">Bulk & corporate orders</p>
+  <h2 class="cta-headline">Want the series<br>for your whole team?</h2>
+  <p class="cta-sub">Onboarding a team into Agile? These books make the perfect pre-read. Reach out for bulk orders or a workshop pairing.</p>
+  <a class="btn-fill" href="index.html#contact">Get in touch →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="index.html">MANAV<span>.</span></a>
+  <div class="footer-links">
+    <a href="workshops.html">Workshops</a>
+    <a href="books.html">Books</a>
+    <a href="comedy.html">Comedy</a>
+    <a href="https://www.linkedin.com/in/manavag/" target="_blank">LinkedIn</a>
+    <a href="https://medium.com/@manav_agarwal" target="_blank">Medium</a>
+    <a href="https://www.instagram.com/justamanav/" target="_blank">Instagram</a>
+    <a href="https://manavagarwal.com/impressum" target="_blank">Impressum</a>
+  </div>
+  <p class="footer-copy">© 2026 Manav Agarwal. Corporate boredom not found.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

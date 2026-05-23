@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Workshops & Certifications — Manav Agarwal</title>
+<meta name="description" content="SAFe® certifications, Agile, AI-for-PMs and career-transition workshops — run like a comedy set, not a slide deck."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- MOBILE MENU DRAWER OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="menuClose">✕</button>
+  <a href="workshops.html" onclick="closeMobile()">Workshops</a>
+  <a href="books.html" onclick="closeMobile()">Books</a>
+  <a href="comedy.html" onclick="closeMobile()">Comedy</a>
+  <a href="index.html#testimonials" onclick="closeMobile()">Proof</a>
+  <a href="index.html#contact" class="btn-fill" onclick="closeMobile()">Hire Manav</a>
+</div>
+
+<!-- HEADER / NAVIGATION -->
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">MANAV<span>.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="workshops.html" class="active">Workshops</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="comedy.html">Comedy</a></li>
+      <li><a href="index.html#testimonials">Proof</a></li>
+    </ul>
+
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+
+    <a class="nav-cta" href="index.html#contact">Hire Manav</a>
+    <div class="nav-hamburger" id="hamburger" onclick="openMobile()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <p class="breadcrumb"><a href="index.html">Home</a> / Workshops</p>
+  <p class="section-eyebrow">What I Teach</p>
+  <h1>Workshops that <em>don't</em><br>put people to sleep.</h1>
+  <p>From official SAFe® certifications to AI for project managers and career transitions — each one is built to be run like a stand-up set: high energy, zero corporate theater, and tools your team uses the very next Monday.</p>
+  <a class="btn-fill" href="index.html#contact">Book a workshop →</a>
+</header>
+
+<!-- ALL WORKSHOPS -->
+<section class="section" id="workshops">
+  <div class="workshops-split">
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab" data-filter="implementation">Implementation <span class="tab-count">2</span></button>
+      <button class="filter-tab" data-filter="safe">SAFe® Cert <span class="tab-count">3</span></button>
+      <button class="filter-tab" data-filter="career">Career <span class="tab-count">2</span></button>
+      <button class="filter-tab" data-filter="ai">AI & PM <span class="tab-count">1</span></button>
+    </div>
+
+    <div class="workshops-container">
+      <!-- auto-open first category since visitors here have already self-selected -->
+      <div class="workshops-grid cols-2" id="workshopsGrid" data-auto-open="true">
+
+        <div class="workshop-card" data-category="implementation">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">Implementation</div><div class="wcard-duration">2–5 Days</div></div>
+          </div>
+          <div class="wcard-title">Project Management Essentials</div>
+          <div class="wcard-desc">Waterfall structure meets Agile flexibility. Stakeholders who don't know what they want, risk mitigation that people actually use, and delivery under pressure — all covered.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">Jira Board</span>
+            <span class="tool-badge">Miro Matrix</span>
+            <span class="tool-badge">Strategic Roadmap</span>
+          </div>
+          <div class="wcard-perspective">"Psychological Safety for PMs: How to deliver bad news without getting shot."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">All levels</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="implementation">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">Implementation</div><div class="wcard-duration">2–3 Days</div></div>
+          </div>
+          <div class="wcard-title">The Agile Mindset & Scrum</div>
+          <div class="wcard-desc">Stop doing Agile in name only. We simulate real sprint pressure to teach teams how to prioritise value over paperwork. Standups that actually stand up. Retros people don't dread.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">Scrum Guides</span>
+            <span class="tool-badge">Task Estimation</span>
+            <span class="tool-badge">Sprint Retros</span>
+          </div>
+          <div class="wcard-perspective">"The No-BS Retrospective: How to get people to speak up when trust is low."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">Beginners welcome</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="ai">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">AI & PM</div><div class="wcard-duration">2 Days</div></div>
+          </div>
+          <div class="wcard-title">AI-Powered Project Management</div>
+          <div class="wcard-desc">Not a coding class. A strategy session on how to use LLMs to automate grunt work, write better requirements, and push back on unrealistic deadlines — with data.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">ChatGPT Enterprise</span>
+            <span class="tool-badge">Claude AI Workspace</span>
+            <span class="tool-badge">Prompt Libraries</span>
+          </div>
+          <div class="wcard-perspective">"AI as a Negotiation Partner: Using data to push back on management."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">PM · Scrum Master · PO</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="safe">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">SAFe® Cert</div><div class="wcard-duration">2 Days</div></div>
+          </div>
+          <div class="wcard-title">Leading SAFe® (SA)</div>
+          <div class="wcard-desc">Official certification. Unofficial insight: the stuff that's not in the workbook. How to apply massive frameworks without crushing your company culture.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">SAFe Matrix</span>
+            <span class="tool-badge">PI planning board</span>
+            <span class="tool-badge">Value mapping</span>
+          </div>
+          <div class="wcard-perspective">"The Political Shield: Getting Finance, HR, and Legal on board without a revolt."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">Executives · Leaders</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="safe">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">SAFe® Cert</div><div class="wcard-duration">2 Days</div></div>
+          </div>
+          <div class="wcard-title">SAFe® Scrum Master (SSM)</div>
+          <div class="wcard-desc">Servant leadership in a scaled enterprise isn't the same as in a startup. Facilitation when you have dependencies on five teams and authority over none of them.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">ART Board</span>
+            <span class="tool-badge">Kanban cards</span>
+            <span class="tool-badge">Dependency sheets</span>
+          </div>
+          <div class="wcard-perspective">"Servant Leadership vs. Being a Doormat: How to say No to protect your team."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">New & Existing SMs</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="career">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">Career</div><div class="wcard-duration">1–2 Days</div></div>
+          </div>
+          <div class="wcard-title">The Interview Reverse-Engineer</div>
+          <div class="wcard-desc">Stop memorising answers. Start understanding the game. Deconstruct job descriptions, interview the company back, and spot the toxic culture before you sign the contract.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">Resume Engine</span>
+            <span class="tool-badge">Roleplay Matrix</span>
+            <span class="tool-badge">Culture Checklist</span>
+          </div>
+          <div class="wcard-perspective">"The Red Flag Radar: How to spot a bad manager before you start."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">All career stages</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="career">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">Career</div><div class="wcard-duration">2–3 Days</div></div>
+          </div>
+          <div class="wcard-title">Practitioner-to-Leader Transition</div>
+          <div class="wcard-desc">The skills that got you here won't get you there. For high-performers moving into management. The hardest part isn't strategy — it's the identity shift.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">Growth Blueprint</span>
+            <span class="tool-badge">EQ Matrix</span>
+            <span class="tool-badge">Delegation Systems</span>
+          </div>
+          <div class="wcard-perspective">"The Grief of the Expert: How to stop doing the work and start leading people."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">Senior ICs · New Managers</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="safe">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">SAFe® Cert</div><div class="wcard-duration">3 Days</div></div>
+          </div>
+          <div class="wcard-title">SAFe® PO/PM (POPM)</div>
+          <div class="wcard-desc">Bridge strategy to execution. Write user stories engineers actually understand. Prioritise features in a world where everyone thinks their request is urgent.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">Grooming Logs</span>
+            <span class="tool-badge">Story Mapping</span>
+            <span class="tool-badge">WSJF Matrix</span>
+          </div>
+          <div class="wcard-perspective">"The Art of the Backlog: Writing stories that comply with physics and deadlines."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">Product Owners · PMs</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="cta-section">
+  <p class="section-eyebrow">Ready when you are</p>
+  <h2 class="cta-headline">Don't see your exact problem?<br>It's probably what I do best.</h2>
+  <p class="cta-sub">Most engagements are custom-built around what's actually breaking in your team. Tell me about it.</p>
+  <a class="btn-fill" href="index.html#contact">Get in touch →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="index.html">MANAV<span>.</span></a>
+  <div class="footer-links">
+    <a href="workshops.html">Workshops</a>
+    <a href="books.html">Books</a>
+    <a href="comedy.html">Comedy</a>
+    <a href="https://www.linkedin.com/in/manavag/" target="_blank">LinkedIn</a>
+    <a href="https://medium.com/@manav_agarwal" target="_blank">Medium</a>
+    <a href="https://www.instagram.com/justamanav/" target="_blank">Instagram</a>
+    <a href="https://manavagarwal.com/impressum" target="_blank">Impressum</a>
+  </div>
+  <p class="footer-copy">© 2026 Manav Agarwal. Corporate boredom not found.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
