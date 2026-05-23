@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Manav Agarwal — Agile Coach · AI Strategist · Stand-Up Comedian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<!-- Clean, Modern Sans-Serif Typographic System -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root, [data-theme="dark"] {
+  --bg: #090B0F;                 /* Premium slate obsidian */
+  --bg2: #10141C;                /* Sleek deep slate surface */
+  --bg3: #171C26;                /* Card background */
+  --border: rgba(250, 246, 240, 0.05);
+  --lime: #52B788;               /* Calm premium mint-emerald green */
+  --lime-dim: rgba(82, 183, 136, 0.08);
+  --white: #F4F6F4;              /* Soft eggshell white */
+  --muted: #717E77;              /* Muted sage-grey */
+  --muted2: #A5B3AA;             /* Light slate gray */
+  --card-shadow: rgba(0, 0, 0, 0.4);
+  --transition-theme: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
+[data-theme="light"] {
+  --bg: #F4F6F4;                 /* Ultra-soft light linen sage */
+  --bg2: #E8EBE8;                /* Mid sage stone */
+  --bg3: #FFFFFF;                /* Pure clean card white */
+  --border: rgba(45, 106, 79, 0.08);
+  --lime: #2D6A4F;               /* Deeper forest green for high contrast readability */
+  --lime-dim: rgba(45, 106, 79, 0.06);
+  --white: #1B2B22;              /* Dark charcoal-forest text */
+  --muted: #62756B;              /* Medium slate sage */
+  --muted2: #384A40;             /* Legible body copy green-gray */
+  --card-shadow: rgba(45, 106, 79, 0.03);
+  --transition-theme: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: var(--transition-theme);
+}
+
+/* ─── NAVIGATION ─────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.75rem 3.5rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1), var(--transition-theme);
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: var(--bg);
+  backdrop-filter: blur(24px);
+  padding: 1.25rem 3.5rem;
+  border-color: var(--border);
+}
+.nav-logo {
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.2rem;
+  letter-spacing: -0.02em; color: var(--white); text-decoration: none;
+}
+.nav-logo span { color: var(--lime); }
+.nav-right { display: flex; align-items: center; gap: 2.5rem; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted2); text-decoration: none;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--bg) !important; background: var(--lime) !important; border: none; cursor: pointer;
+  padding: 0.75rem 1.6rem; text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-theme="dark"] .nav-cta { color: #000 !important; }
+[data-theme="light"] .nav-cta { color: #fff !important; }
+.nav-cta:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--lime-dim);
+}
+
+/* Theme Toggle Switch */
+.theme-toggle {
+  background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); padding: 0.5rem; border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+.theme-toggle:hover { background-color: var(--border); }
+.theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; }
+[data-theme="dark"] .theme-toggle .sun-icon { display: block; }
+[data-theme="dark"] .theme-toggle .moon-icon { display: none; }
+[data-theme="light"] .theme-toggle .sun-icon { display: none; }
+[data-theme="light"] .theme-toggle .moon-icon { display: block; }
+
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.3s; }
+
+/* ─── BUTTON STYLES ──────────────────────── */
+.btn-fill, .btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.9rem 1.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.btn-fill {
+  background: var(--lime);
+  color: var(--bg);
+  border: 1px solid var(--lime);
+}
+[data-theme="dark"] .btn-fill { color: #000; }
+[data-theme="light"] .btn-fill { color: #fff; }
+.btn-fill:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--lime-dim);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover {
+  border-color: var(--lime);
+  color: var(--lime);
+  transform: translateY(-2px);
+}
+
+/* ─── HERO ───────────────────────────────── */
+.hero-wrapper {
+  min-height: 100vh;
+  padding: 8rem 3.5rem 5rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+}
+
+/* Centered Sized-Down Portrait Container */
+.hero-top-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  width: 100%;
+  padding: 0 4rem;
+}
+.photo-wrap {
+  position: relative;
+  width: 290px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.photo-img {
+  display: block;
+  width: 90%;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Organic background cross symbol */
+.photo-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.15;
+  fill: var(--lime);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1.15);
+}
+
+.photo-wrap::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: var(--border); z-index: 3;
+}
+
+/* Symmetrical Hand-Drawn Curved Loops (Kane style) */
+.callout {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  animation: calloutPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Kane-Style Absolute Positioning Coordinates */
+.c-left {
+  top: 40%;
+  right: calc(100% + 15px);
+  text-align: right;
+  align-items: flex-end;
+}
+.c-right {
+  top: 35%;
+  left: calc(100% + 15px);
+  text-align: left;
+  align-items: flex-start;
+}
+
+.callout-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--white);
+  line-height: 1;
+}
+.callout-lbl {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(0.7rem, 1.5vw, 0.78rem);
+  color: var(--muted2);
+  font-weight: 500;
+  line-height: 1.3;
+  margin-top: 4px;
+}
+
+/* Custom Hand-Drawn SVG Curved Paths */
+.arrow-svg {
+  width: 80px;
+  height: 40px;
+  overflow: visible;
+  pointer-events: none;
+  margin-top: 8px;
+}
+.handdrawn-path {
+  fill: none;
+  stroke: var(--lime);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawCurve 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.8s;
+  opacity: 0.55;
+}
+
+/* Responsive Scaling to prevent overflow clipping on smaller viewports */
+@media (max-width: 768px) {
+  .photo-wrap { width: 180px; }
+  .callout { display: none; } /* Hide callouts on tight mobile viewports to avoid layout clutter */
+}
+
+/* Copy Block Directly Below Portrait */
+.hero-copy-section {
+  text-align: center;
+  max-width: 880px;
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--lime);
+}
+
+/* Responsive Inline Carousel Headline */
+.hero-headline {
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1.1; letter-spacing: -0.03em;
+  color: var(--white);
+}
+
+/* Inline flex box with locked min-width resolves layout shifts entirely */
+.carousel-inline-box {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  text-align: center;
+}
+.carousel-word-highlight {
+  color: var(--lime);
+  font-weight: 800;
+  display: inline-block;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.carousel-word-highlight.fade-out { opacity: 0; transform: translateY(-5px); }
+.carousel-word-highlight.fade-in { opacity: 1; transform: translateY(0); }
+
+/* About Me Styled in Comfort Green */
+.about-me-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.about-me-sub {
+  color: var(--lime);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.about-me-text {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--white);
+  font-weight: 400;
+}
+.hero-sub {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--muted2);
+  font-weight: 300;
+}
+.hero-sub strong { color: var(--white); font-weight: 500; }
+
+.hero-actions { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; align-items: center; }
+
+/* ─── METRICS STRIP (Strictly 2 Columns, Center Aligned & Bold) ─── */
+.metrics {
+  padding: 8rem 3.5rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* Strict 2-column layout */
+  gap: 4rem 3.5rem;
+  background: transparent;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.metric-item {
+  background: transparent;
+  padding: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem;
+}
+.metric-num {
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  letter-spacing: -0.03em; color: var(--white);
+  line-height: 1;
+}
+.metric-num .unit { color: var(--lime); font-size: 0.75em; }
+.metric-label { font-size: 0.8rem; color: var(--muted); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ─── AUDIENCE TICKER ──────────────────────── */
+.ticker-wrap {
+  padding: 3.5rem 0;
+  overflow: hidden; position: relative;
+  border-bottom: 1px solid var(--border);
+}
+.ticker-wrap::before, .ticker-wrap::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 150px; z-index: 2; pointer-events: none;
+}
+.ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+.ticker-wrap::after { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
+.ticker-track { display: flex; gap: 0; width: max-content; animation: ticker 35s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+.ticker-item {
+  display: flex; align-items: center; gap: 1.1rem;
+  padding: 0 3rem;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); white-space: nowrap; transition: color 0.3s ease;
+}
+.ticker-item .dot { width: 4px; height: 4px; background: var(--lime); border-radius: 50%; flex-shrink: 0; }
+.ticker-item:hover { color: var(--white); }
+
+/* ─── WORKSHOPS (Line-by-Line Stacked Filters) ─── */
+.section { padding: 10rem 3.5rem; }
+.section-header { margin-bottom: 5rem; }
+.section-eyebrow {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--lime); margin-bottom: 1.1rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-eyebrow::after { content: ''; flex: 0 0 32px; height: 1px; background: var(--lime); }
+.section-title {
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  letter-spacing: -0.03em; line-height: 1.05;
+  color: var(--white);
+}
+.section-title em { color: var(--muted); font-style: italic; font-weight: 400; }
+
+.workshops-split {
+  display: grid;
+  grid-template-columns: 0.65fr 1.35fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* Stacks Filters Vertically One-by-One, Like Kane's Site */
+.filter-tabs {
+  display: flex; flex-direction: column; gap: 1.1rem;
+  border-left: 2px solid var(--border);
+  padding-left: 1.5rem;
+}
+.filter-tab {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem; font-weight: 700; letter-spacing: 0.02em;
+  color: var(--muted); background: transparent; border: none; cursor: pointer;
+  padding: 0.5rem 0; text-align: left;
+  position: relative; transition: color 0.3s ease, transform 0.3s ease;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.filter-tab::before {
+  content: ''; position: absolute; left: -1.6rem; top: 0; bottom: 0; width: 3px;
+  background: var(--lime); transform: scaleY(0); transition: transform 0.3s ease;
+}
+.filter-tab.active { color: var(--white); transform: translateX(4px); }
+.filter-tab.active::before { transform: scaleY(1); }
+.filter-tab:hover { color: var(--white); }
+.filter-tab .tab-count {
+  font-size: 0.7rem; font-weight: 600; color: var(--muted);
+  background: var(--border); padding: 0.2rem 0.5rem; border-radius: 99px;
+  transition: color 0.3s ease;
+}
+.filter-tab.active .tab-count { color: var(--bg); background: var(--lime); }
+
+/* Workshops Dynamic Grid */
+.workshops-container { position: relative; min-height: 400px; }
+.workshops-grid {
+  display: grid; grid-template-columns: 1fr; gap: 3rem;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.workshops-grid.active { opacity: 1; transform: translateY(0); }
+
+.workshop-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  padding: 2.5rem; border-radius: 8px;
+  display: flex; flex-direction: column; gap: 1.5rem;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px var(--card-shadow);
+  cursor: default;
+}
+.workshop-card:hover { border-color: var(--lime); transform: translateY(-4px); box-shadow: 0 10px 25px var(--card-shadow); }
+.wcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.wcard-tag {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--white); background: var(--lime); padding: 0.4rem 0.8rem; border-radius: 2px; flex-shrink: 0;
+}
+[data-theme="dark"] .wcard-tag { color: var(--bg); }
+.wcard-duration { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-top: 0.35rem; }
+.wcard-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; color: var(--white); }
+.wcard-desc { font-size: 0.9rem; line-height: 1.75; color: var(--muted2); font-weight: 300; }
+
+.wcard-tools { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.tool-badge {
+  font-size: 0.72rem; font-weight: 700; background: var(--border);
+  border: 1px solid rgba(245, 242, 235, 0.05); padding: 0.35rem 0.75rem;
+  border-radius: 4px; color: var(--white); display: inline-flex; align-items: center; gap: 0.35rem;
+}
+[data-theme="light"] .tool-badge { border-color: rgba(28, 29, 33, 0.04); }
+
+.wcard-perspective {
+  font-size: 0.85rem; color: var(--muted); font-style: italic;
+  border-left: 2px solid var(--lime); padding-left: 1rem; margin-top: 0.5rem; line-height: 1.65;
+}
+.wcard-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.wcard-level { font-size: 0.72rem; color: var(--muted); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.wcard-arrow { color: var(--lime); font-size: 1rem; transition: transform 0.3s ease; }
+.workshop-card:hover .wcard-arrow { transform: translateX(6px); }
+
+/* ─── LIBRARY (Visual 3D Book Cover Shelf Row) ─── */
+.books-section { padding: 10rem 3.5rem; border-top: 1px solid var(--border); }
+
+/* Horizontal scrolling shelf wrapper */
+.books-shelf-wrapper {
+  overflow-x: auto;
+  padding: 3rem 1.5rem;
+  margin-top: 3rem;
+  scrollbar-width: thin;
+}
+.books-shelf-wrapper::-webkit-scrollbar { height: 4px; }
+.books-shelf-wrapper::-webkit-scrollbar-track { background: var(--bg); }
+.books-shelf-wrapper::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+.books-shelf {
+  display: flex;
+  gap: 3.5rem;
+  width: max-content;
+}
+
+.book-card {
+  width: 240px;
+  background: transparent; padding: 0; display: flex; flex-direction: column; gap: 1.5rem;
+}
+
+/* 3D Spines */
+.book-visual {
+  perspective: 1000px;
+  display: flex; justify-content: flex-start; margin-bottom: 0.5rem;
+}
+.book-spine-cover {
+  width: 130px; height: 190px;
+  position: relative;
+  border-radius: 2px 6px 6px 2px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 6px 10px 24px rgba(0, 0, 0, 0.35);
+}
+.book-spine-cover::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+  background: rgba(0,0,0,0.18); z-index: 5;
+  border-radius: 2px 0 0 2px;
+}
+.book-visual:hover .book-spine-cover {
+  transform: rotateY(-18deg) rotateX(6deg) translateY(-4px);
+  box-shadow: 12px 16px 32px rgba(0, 0, 0, 0.45);
+}
+
+.book1 { background: linear-gradient(135deg, #1A3F33 0%, #2D5A47 100%); border-right: 2px solid #365C4B; }
+.book2 { background: linear-gradient(135deg, #3B2016 0%, #5C3322 100%); border-right: 2px solid #5C3322; }
+.book3 { background: linear-gradient(135deg, #1C334A 0%, #2B4E70 100%); border-right: 2px solid #2B4E70; }
+.book4 { background: linear-gradient(135deg, #2D1A3F 0%, #472B63 100%); border-right: 2px solid #472B63; }
+
+.book-title-overlay {
+  padding: 1.25rem; height: 100%; display: flex; flex-direction: column; justify-content: space-between;
+}
+.book-brand-label { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); }
+.book-hero-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; font-weight: 700; color: #FAF8F5; line-height: 1.3; }
+.book-cover-meta { font-size: 0.6rem; color: rgba(250, 246, 240, 0.6); font-family: 'Plus Jakarta Sans', sans-serif; font-style: italic; }
+
+.book-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--white); line-height: 1.35; }
+.book-sub { font-size: 0.85rem; color: var(--muted2); line-height: 1.65; font-weight: 300; }
+.book-link {
+  display: inline-flex; align-items: center; gap: 0.5rem; margin-top: auto;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--lime); text-decoration: none; transition: all 0.3s ease;
+}
+.book-link:hover { gap: 0.85rem; }
+
+/* ─── TESTIMONIALS (Continuous Auto-Scroll Marquee) ─── */
+.testi-section {
+  padding: 10rem 3.5rem; background: var(--bg2); border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+.testi-marquee {
+  width: 100%; overflow: hidden; position: relative; margin-top: 4rem; padding: 2rem 0;
+  display: flex;
+}
+.testi-marquee::before, .testi-marquee::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 150px; z-index: 2; pointer-events: none;
+}
+.testi-marquee::before { left: 0; background: linear-gradient(90deg, var(--bg2), transparent); }
+.testi-marquee::after { right: 0; background: linear-gradient(-90deg, var(--bg2), transparent); }
+
+/* Slow but not too slow (24s loop velocity) */
+.testi-track {
+  display: flex; gap: 2.5rem; width: max-content;
+  animation: testiTicker 24s linear infinite;
+  will-change: transform;
+}
+.testi-track:hover { animation-play-state: paused; }
+
+.testi-card {
+  flex: 0 0 380px;
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 2.5rem; border-radius: 8px;
+  box-shadow: 0 4px 20px var(--card-shadow);
+  display: flex; flex-direction: column; gap: 1.5rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.testi-card:hover { border-color: var(--lime); transform: translateY(-4px); }
+.testi-q { font-size: 0.95rem; line-height: 1.8; color: var(--muted2); font-weight: 300; font-style: italic; }
+.testi-q strong { color: var(--white); font-weight: 500; font-style: normal; }
+.testi-bottom { margin-top: auto; }
+.testi-name { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--white); }
+.testi-role { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; font-weight: 500; }
+
+@keyframes testiTicker {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-33.33%, 0, 0); }
+}
+
+/* ─── READY WHEN YOU ARE: CONTACT FORM + SOCIAL LOGOS ─── */
+.cta-section { padding: 10rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(82, 183, 136, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-headline {
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  letter-spacing: -0.03em; line-height: 1.05;
+  color: var(--white); margin-bottom: 1.5rem;
+}
+.cta-sub { font-size: 1.05rem; line-height: 1.8; color: var(--muted2); max-width: 500px; margin: 0 auto 3rem; font-weight: 300; }
+
+/* Minimalist Contact Form */
+.contact-form-wrapper {
+  max-width: 540px;
+  margin: 0 auto 4rem auto;
+  position: relative;
+  z-index: 5;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.form-input, .form-textarea {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--white);
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, outline 0.3s ease;
+}
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--lime);
+}
+.form-submit-btn {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--lime) !important;
+  background-color: var(--lime) !important;
+  color: var(--bg) !important;
+}
+
+/* Social Brands Grid (SVG Logos) */
+.social-brands-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 5;
+}
+.social-brand-link {
+  color: var(--muted);
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-flex;
+}
+.social-brand-link:hover {
+  color: var(--white);
+  transform: translateY(-2px);
+}
+.social-brand-link svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* ─── FOOTER ─────────────────────────────── */
+footer {
+  padding: 3.5rem; border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;
+}
+.footer-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; color: var(--white); text-decoration: none; }
+.footer-logo span { color: var(--lime); }
+.footer-links { display: flex; gap: 2.5rem; }
+.footer-links a { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s ease; }
+.footer-links a:hover { color: var(--white); }
+.footer-copy { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+
+/* ─── ANIMATIONS ──────────────────────────── */
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes calloutPop { to { opacity: 1; } }
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes drawCurve { to { stroke-dashoffset: 0; } }
+
+/* ─── DYNAMIC MOBILE DROPDOWN ─── */
+.mobile-menu {
+  display: flex; position: fixed; inset: 0; background: var(--bg);
+  z-index: 300;
+  flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  pointer-events: none;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, var(--transition-theme);
+}
+.mobile-menu.open {
+  pointer-events: all;
+  transform: translateY(0);
+  opacity: 1;
+}
+.mobile-menu a { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--white); text-decoration: none; letter-spacing: -0.02em; transition: color 0.3s ease; }
+.mobile-menu a:hover { color: var(--lime); }
+.mobile-menu-close { position: absolute; top: 2rem; right: 2rem; font-size: 1.8rem; color: var(--muted); cursor: pointer; background: none; border: none; line-height: 1; }
+
+/* ─── RESPONSIVE SYSTEM ───────────────────── */
+@media(max-width:960px){
+  nav { padding: 1.5rem 2rem; }
+  nav.scrolled { padding: 1.1rem 2rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .hero-wrapper { padding: 8rem 2rem 4rem; gap: 3rem; }
+  .hero-copy-section { gap: 1.5rem; }
+
+  /* Keeps filters stacked vertically on mobile */
+  .workshops-split { grid-template-columns: 1fr; gap: 3rem; }
+  .filter-tabs { border-left: 2px solid var(--border); padding-left: 1.5rem; flex-direction: column; gap: 1rem; }
+  .filter-tab::before { left: -1.6rem; bottom: 0; top: 0; width: 3px; height: auto; right: auto; transform: scaleY(0); }
+  .filter-tab.active::before { transform: scaleY(1); }
+
+  .section { padding: 6rem 2rem; }
+  .books-section { padding: 6rem 2rem; }
+  .testi-section { padding: 6rem 2rem; }
+  .cta-section { padding: 8rem 2rem; }
+  .form-row { grid-template-columns: 1fr; gap: 1.25rem; }
+  footer { padding: 2.5rem 2rem; flex-direction: column; align-items: flex-start; gap: 2rem; }
+  .footer-links { gap: 1.5rem; flex-wrap: wrap; }
+}
+
+@media(max-width:600px){
+  .metrics { grid-template-columns: 1fr; gap: 2.5rem; }
+  .metric-item { padding: 0; }
+  .hero-headline { font-size: 2.3rem; }
+  .testi-card { flex: 0 0 320px; padding: 2rem; }
+  .filter-tab { font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU DRAWER OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="menuClose">✕</button>
+  <a href="#workshops" onclick="closeMobile()">Workshops</a>
+  <a href="#books" onclick="closeMobile()">Books</a>
+  <a href="#testimonials" onclick="closeMobile()">Proof</a>
+  <a href="#contact" onclick="closeMobile()">Comedy Gigs</a>
+  <a href="#contact" class="btn-fill" onclick="closeMobile()">Hire Manav</a>
+</div>
+
+<!-- HEADER / NAVIGATION -->
+<nav id="mainNav">
+  <a class="nav-logo" href="#">MANAV<span>.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#workshops">Workshops</a></li>
+      <li><a href="#books">Books</a></li>
+      <li><a href="#testimonials">Proof</a></li>
+      <li><a href="#contact">Comedy Gigs</a></li>
+    </ul>
+
+    <!-- Light Theme Toggle -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+
+    <a class="nav-cta" href="#contact">Hire Manav</a>
+    <div class="nav-hamburger" id="hamburger" onclick="openMobile()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO COMPONENT -->
+<main class="hero-wrapper">
+  
+  <!-- Centered Picture at the Top (First Visual Item) -->
+  <section class="hero-top-visual">
+    <div class="photo-wrap">
+
+      <!-- Left Callout (Books Published) -->
+      <div class="callout c-left">
+        <span class="callout-num">5</span>
+        <span class="callout-lbl">Books<br>Published</span>
+        <svg class="arrow-svg" viewBox="0 0 100 40">
+          <path d="M 10,5 C 35,5 60,15 50,25 C 40,35 25,30 85,25" class="handdrawn-path" />
+        </svg>
+      </div>
+
+      <!-- Right Callout (Workshop Participants Trained) -->
+      <div class="callout c-right">
+        <span class="callout-num">500+</span>
+        <span class="callout-lbl">Workshop<br>Participants Trained</span>
+        <svg class="arrow-svg" viewBox="0 0 100 40">
+          <path d="M 90,5 C 65,5 40,15 50,25 C 60,35 75,30 15,25" class="handdrawn-path" />
+        </svg>
+      </div>
+
+      <!-- Organic asterisk-cross backdrop shape vector behind transparent cutout portrait -->
+      <div class="photo-backdrop">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+          <path d="M 50,0 C 53,35 65,35 65,50 C 65,65 53,65 50,100 C 47,65 35,65 35,50 C 35,35 47,35 50,0 Z M 0,50 C 35,47 35,35 50,35 C 65,35 65,47 100,50 C 65,53 65,65 50,65 C 35,65 35,53 0,50 Z"/>
+        </svg>
+      </div>
+
+      <!-- Sized-down transparent portrait prevents overflow on standard viewports -->
+      <img
+        class="photo-img"
+        src="https://i.postimg.cc/cH6QfR4K/IMG-0171.png"
+        alt="Manav Agarwal"
+      />
+    </div>
+  </section>
+
+  <!-- Headline Copy Area directly below portrait -->
+  <section class="hero-copy-section">
+    <span class="hero-tag">Agile Transformation Leader &bull; Stand-Up Comedian</span>
+    
+    <h1 class="hero-headline">
+      I help 
+      <!-- Locked Layout Box: Carousel changes values smoothly without moving side letters -->
+      <span class="carousel-inline-box">
+        <span id="scramble-word" class="carousel-word-highlight">devs</span>
+      </span> 
+      actually work together.
+    </h1>
+
+    <!-- "About Me" blurb styled in custom green and standard text -->
+    <div class="about-me-container">
+      <h3 class="about-me-sub">About Me</h3>
+      <p class="about-me-text">
+        Aerospace engineer turned Agile Coach & Stand-up Comedian. I deconstruct complex org dynamics using system logic, and rebuild team connection using storytelling and humor. No boring slides, no corporate theater.
+      </p>
+      <p class="hero-sub">
+        From <strong>Aerospace Engineering</strong> to the frontlines of Agile transformation —
+        I spent years watching brilliant strategies die because the humans behind them
+        were never brought along for the ride. Now I fix that with actionable structures and the high-energy delivery of stand-up comedy sets.
+      </p>
+    </div>
+
+    <div class="hero-actions">
+      <a class="btn-fill" href="#contact">Book Workshops & Comedy →</a>
+      <a class="btn-outline" href="#books">Explore the Books</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- CENTRED BOLD METRICS (Strictly 2 Columns, Center Aligned & Bold) -->
+<div class="metrics" id="metricsSection">
+  <div class="metric-item">
+    <div class="metric-num"><span class="count-up" data-target="500" data-suffix="+">0</span></div>
+    <div class="metric-label">Workshop participants trained</div>
+  </div>
+  <div class="metric-item">
+    <div class="metric-num"><span class="count-up" data-target="12" data-suffix="+">0</span></div>
+    <div class="metric-label">Countries reached</div>
+  </div>
+  <div class="metric-item">
+    <div class="metric-num"><span class="count-up" data-target="5">0</span></div>
+    <div class="metric-label">Books published</div>
+  </div>
+  <div class="metric-item">
+    <div class="metric-num"><span class="count-up" data-target="6" data-suffix="x">0</span></div>
+    <div class="metric-label">Certifications held</div>
+  </div>
+</div>
+
+<!-- AUDIENCE TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- WORKSHOPS -->
+<section class="section" id="workshops">
+  <div class="section-header">
+    <p class="section-eyebrow">What I Teach</p>
+    <h2 class="section-title">Workshops that <em>don't</em><br>put people to sleep.</h2>
+  </div>
+
+  <div class="workshops-split">
+    <!-- Line-by-Line Stacked Sidebar Filters (Saves vast space, Kane's exact selector style) -->
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab" data-filter="implementation">Implementation <span class="tab-count">2</span></button>
+      <button class="filter-tab" data-filter="safe">SAFe® Cert <span class="tab-count">3</span></button>
+      <button class="filter-tab" data-filter="career">Career <span class="tab-count">2</span></button>
+      <button class="filter-tab" data-filter="ai">AI & PM <span class="tab-count">1</span></button>
+    </div>
+
+    <!-- Active Workshops Panel -->
+    <div class="workshops-container">
+
+      <!-- Workshop Cards Grid (Hides on load until category tab is clicked) -->
+      <div class="workshops-grid" id="workshopsGrid">
+
+        <div class="workshop-card" data-category="implementation">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">Implementation</div><div class="wcard-duration">2–5 Days</div></div>
+          </div>
+          <div class="wcard-title">Project Management Essentials</div>
+          <div class="wcard-desc">Waterfall structure meets Agile flexibility. Stakeholders who don't know what they want, risk mitigation that people actually use, and delivery under pressure — all covered.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">Jira Board</span>
+            <span class="tool-badge">Miro Matrix</span>
+            <span class="tool-badge">Strategic Roadmap</span>
+          </div>
+          <div class="wcard-perspective">"Psychological Safety for PMs: How to deliver bad news without getting shot."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">All levels</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="implementation">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">Implementation</div><div class="wcard-duration">2–3 Days</div></div>
+          </div>
+          <div class="wcard-title">The Agile Mindset & Scrum</div>
+          <div class="wcard-desc">Stop doing Agile in name only. We simulate real sprint pressure to teach teams how to prioritise value over paperwork. Standups that actually stand up. Retros people don't dread.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">Scrum Guides</span>
+            <span class="tool-badge">Task Estimation</span>
+            <span class="tool-badge">Sprint Retros</span>
+          </div>
+          <div class="wcard-perspective">"The No-BS Retrospective: How to get people to speak up when trust is low."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">Beginners welcome</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="ai">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">AI & PM</div><div class="wcard-duration">2 Days</div></div>
+          </div>
+          <div class="wcard-title">AI-Powered Project Management</div>
+          <div class="wcard-desc">Not a coding class. A strategy session on how to use LLMs to automate grunt work, write better requirements, and push back on unrealistic deadlines — with data.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">ChatGPT Enterprise</span>
+            <span class="tool-badge">Claude AI Workspace</span>
+            <span class="tool-badge">Prompt Libraries</span>
+          </div>
+          <div class="wcard-perspective">"AI as a Negotiation Partner: Using data to push back on management."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">PM · Scrum Master · PO</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="safe">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">SAFe® Cert</div><div class="wcard-duration">2 Days</div></div>
+          </div>
+          <div class="wcard-title">Leading SAFe® (SA)</div>
+          <div class="wcard-desc">Official certification. Unofficial insight: the stuff that's not in the workbook. How to apply massive frameworks without crushing your company culture.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">SAFe Matrix</span>
+            <span class="tool-badge">PI planning board</span>
+            <span class="tool-badge">Value mapping</span>
+          </div>
+          <div class="wcard-perspective">"The Political Shield: Getting Finance, HR, and Legal on board without a revolt."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">Executives · Leaders</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="safe">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">SAFe® Cert</div><div class="wcard-duration">2 Days</div></div>
+          </div>
+          <div class="wcard-title">SAFe® Scrum Master (SSM)</div>
+          <div class="wcard-desc">Servant leadership in a scaled enterprise isn't the same as in a startup. Facilitation when you have dependencies on five teams and authority over none of them.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">ART Board</span>
+            <span class="tool-badge">Kanban cards</span>
+            <span class="tool-badge">Dependency sheets</span>
+          </div>
+          <div class="wcard-perspective">"Servant Leadership vs. Being a Doormat: How to say No to protect your team."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">New & Existing SMs</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="career">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">Career</div><div class="wcard-duration">1–2 Days</div></div>
+          </div>
+          <div class="wcard-title">The Interview Reverse-Engineer</div>
+          <div class="wcard-desc">Stop memorising answers. Start understanding the game. Deconstruct job descriptions, interview the company back, and spot the toxic culture before you sign the contract.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">Resume Engine</span>
+            <span class="tool-badge">Roleplay Matrix</span>
+            <span class="tool-badge">Culture Checklist</span>
+          </div>
+          <div class="wcard-perspective">"The Red Flag Radar: How to spot a bad manager before you start."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">All career stages</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="career">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">Career</div><div class="wcard-duration">2–3 Days</div></div>
+          </div>
+          <div class="wcard-title">Practitioner-to-Leader Transition</div>
+          <div class="wcard-desc">The skills that got you here won't get you there. For high-performers moving into management. The hardest part isn't strategy — it's the identity shift.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">Growth Blueprint</span>
+            <span class="tool-badge">EQ Matrix</span>
+            <span class="tool-badge">Delegation Systems</span>
+          </div>
+          <div class="wcard-perspective">"The Grief of the Expert: How to stop doing the work and start leading people."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">Senior ICs · New Managers</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="workshop-card" data-category="safe">
+          <div class="wcard-top">
+            <div><div class="wcard-tag">SAFe® Cert</div><div class="wcard-duration">3 Days</div></div>
+          </div>
+          <div class="wcard-title">SAFe® PO/PM (POPM)</div>
+          <div class="wcard-desc">Bridge strategy to execution. Write user stories engineers actually understand. Prioritise features in a world where everyone thinks their request is urgent.</div>
+          <div class="wcard-tools">
+            <span class="tool-badge">Grooming Logs</span>
+            <span class="tool-badge">Story Mapping</span>
+            <span class="tool-badge">WSJF Matrix</span>
+          </div>
+          <div class="wcard-perspective">"The Art of the Backlog: Writing stories that comply with physics and deadlines."</div>
+          <div class="wcard-footer">
+            <span class="wcard-level">Product Owners · PMs</span>
+            <span class="wcard-arrow">→</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIBRARY (Space-saving horizontal scroll shelf with clean CSS alignment) -->
+<section class="books-section" id="books">
+  <p class="section-eyebrow">The Library</p>
+  <h2 class="section-title">Business books written<br><em>like actual stories.</em></h2>
+  
+  <div class="books-shelf-wrapper">
+    <div class="books-shelf">
+      
+      <!-- Book 1 -->
+      <div class="book-card">
+        <div class="book-visual">
+          <div class="book-spine-cover book1">
+            <div class="book-title-overlay">
+              <span class="book-brand-label">Vol. 01</span>
+              <span class="book-hero-title">When Sally Met Scrum</span>
+              <span class="book-cover-meta">M. Agarwal</span>
+            </div>
+          </div>
+        </div>
+        <div class="book-title">When Sally Met Scrum</div>
+        <div class="book-sub">Experience Scrum challenges through an intuitive, visual fiction story.</div>
+        <a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="book-card">
+        <div class="book-visual">
+          <div class="book-spine-cover book2">
+            <div class="book-title-overlay">
+              <span class="book-brand-label">Vol. 02</span>
+              <span class="book-hero-title">When Sally Met Kanban</span>
+              <span class="book-cover-meta">M. Agarwal</span>
+            </div>
+          </div>
+        </div>
+        <div class="book-title">When Sally Met Kanban</div>
+        <div class="book-sub">A journey from chaos to clarity. Sally learns busy doesn't equal productive.</div>
+        <a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="book-card">
+        <div class="book-visual">
+          <div class="book-spine-cover book3">
+            <div class="book-title-overlay">
+              <span class="book-brand-label">Vol. 03</span>
+              <span class="book-hero-title">When Sally Met Agile</span>
+              <span class="book-cover-meta">M. Agarwal</span>
+            </div>
+          </div>
+        </div>
+        <div class="book-title">When Sally Met Agile</div>
+        <div class="book-sub">Sally faces her ultimate challenge: adapting agile process blocks.</div>
+        <a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a>
+      </div>
+
+      <!-- Book 4 -->
+      <div class="book-card">
+        <div class="book-visual">
+          <div class="book-spine-cover book4">
+            <div class="book-title-overlay">
+              <span class="book-brand-label">Vol. 04</span>
+              <span class="book-hero-title">The Silent Whisper</span>
+              <span class="book-cover-meta">M. Agarwal</span>
+            </div>
+          </div>
+        </div>
+        <div class="book-title">The Silent Whisper</div>
+        <div class="book-sub">What happens to human connection when automated systems learn our desires?</div>
+        <a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS (Seamless CSS Hardware Carousel Loop) -->
+<section class="testi-section" id="testimonials">
+  <p class="section-eyebrow">Proof It Works</p>
+  <h2 class="section-title">They said it.<br><em>Not me.</em></h2>
+  
+  <div class="testi-marquee">
+    <div class="testi-track" id="testiTrack">
+      <!-- Preloaded duplicates inside HTML for absolute, fail-proof infinite loop -->
+      <div class="testi-card">
+        <div class="testi-q">"I used to think soft skills were fluff. Manav was the first coach who explained empathy using <strong>logic I could actually respect.</strong> He didn't try to turn me into a cheerleader."</div>
+        <div class="testi-bottom"><div class="testi-name">Lead Backend Engineer</div><div class="testi-role">FinTech — Engineering to Management</div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-q">"The official SAFe training tells you how it should work. Manav taught us <strong>how it actually works when you have budget cuts and angry stakeholders.</strong> His advice saved my project."</div>
+        <div class="testi-bottom"><div class="testi-name">Release Train Engineer</div><div class="testi-role">Automotive Sector</div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-q">"My CV was a laundry list of tasks that bored everyone. We stopped talking about Jira tickets and started talking about <strong>business value.</strong> I got the role within 3 months."</div>
+        <div class="testi-bottom"><div class="testi-name">Head of Product, Berlin</div><div class="testi-role">Career Pivot</div></div>
+      </div>
+      
+      <!-- Set 2 -->
+      <div class="testi-card">
+        <div class="testi-q">"I used to think soft skills were fluff. Manav was the first coach who explained empathy using <strong>logic I could actually respect.</strong> He didn't try to turn me into a cheerleader."</div>
+        <div class="testi-bottom"><div class="testi-name">Lead Backend Engineer</div><div class="testi-role">FinTech — Engineering to Management</div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-q">"The official SAFe training tells you how it should work. Manav taught us <strong>how it actually works when you have budget cuts and angry stakeholders.</strong> His advice saved my project."</div>
+        <div class="testi-bottom"><div class="testi-name">Release Train Engineer</div><div class="testi-role">Automotive Sector</div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-q">"My CV was a laundry list of tasks that bored everyone. We stopped talking about Jira tickets and started talking about <strong>business value.</strong> I got the role within 3 months."</div>
+        <div class="testi-bottom"><div class="testi-name">Head of Product, Berlin</div><div class="testi-role">Career Pivot</div></div>
+      </div>
+
+      <!-- Set 3 -->
+      <div class="testi-card">
+        <div class="testi-q">"I used to think soft skills were fluff. Manav was the first coach who explained empathy using <strong>logic I could actually respect.</strong> He didn't try to turn me into a cheerleader."</div>
+        <div class="testi-bottom"><div class="testi-name">Lead Backend Engineer</div><div class="testi-role">FinTech — Engineering to Management</div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-q">"The official SAFe training tells you how it should work. Manav taught us <strong>how it actually works when you have budget cuts and angry stakeholders.</strong> His advice saved my project."</div>
+        <div class="testi-bottom"><div class="testi-name">Release Train Engineer</div><div class="testi-role">Automotive Sector</div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-q">"My CV was a laundry list of tasks  everyone. We stopped talking about Jira tickets and started talking about <strong>business value.</strong> I got the role within 3 months."</div>
+        <div class="testi-bottom"><div class="testi-name">Head of Product, Berlin</div><div class="testi-role">Career Pivot</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- READY WHEN YOU ARE (With form & SVG socials) -->
+<section class="cta-section" id="contact">
+  <p class="section-eyebrow">Ready when you are</p>
+  <h2 class="cta-headline">Tell me what's broken.<br>I'll tell you how to fix it.</h2>
+  <p class="cta-sub">Your team's relationship with Agile, AI, or Monday mornings. Let's solve it.</p>
+  
+  <!-- Minimalist Form -->
+  <div class="contact-form-wrapper">
+    <form class="contact-form" action="https://formspree.io/f/placeholder" method="POST">
+      <div class="form-row">
+        <input type="text" name="name" class="form-input" placeholder="Your Name" required/>
+        <input type="email" name="email" class="form-input" placeholder="Email Address" required/>
+      </div>
+      <textarea name="message" class="form-textarea" rows="4" placeholder="Tell me what's broken in your team..." required></textarea>
+      <button type="submit" class="btn-fill form-submit-btn">Send Message →</button>
+    </form>
+  </div>
+
+  <!-- SVG LinkedIn & Medium Icons -->
+  <div class="social-brands-row">
+    <a href="https://www.linkedin.com/in/manavag/" class="social-brand-link" target="_blank" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.67c0-.25.015-.51.09-.69.2-.5.65-1 1.41-1 1 0 1.39.75 1.39 1.85v4.51h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+    </a>
+    <a href="https://medium.com/@manav_agarwal" class="social-brand-link" target="_blank" aria-label="Medium">
+      <svg viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42zm3.04 0c0 3.24-.31 5.87-.7 5.87s-.7-2.63-.7-5.87.31-5.87.7-5.87.7 2.63.7 5.87z"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="#">MANAV<span>.</span></a>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/manavag/" target="_blank">LinkedIn</a>
+    <a href="https://medium.com/@manav_agarwal" target="_blank">Medium</a>
+    <a href="https://www.instagram.com/justamanav/" target="_blank">Instagram</a>
+    <a href="https://manavagarwal.com/impressum" target="_blank">Impressum</a>
+  </div>
+  <p class="footer-copy">© 2026 Manav Agarwal. Corporate boredom not found.</p>
+</footer>
+
+<script>
+/* ─── DYNAMIC COLOR THEME CONTROLLER ─── */
+const themeToggle = document.getElementById('themeToggle');
+const currentTheme = localStorage.getItem('theme') || 'dark';
+
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+themeToggle.addEventListener('click', () => {
+  let theme = document.documentElement.getAttribute('data-theme');
+  let targetTheme = theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', targetTheme);
+  localStorage.setItem('theme', targetTheme);
+});
+
+/* ─── NAV SCROLL TRIGGER ─── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ─── MOBILE DRAWER NAVIGATION ─── */
+const mobileMenu = document.getElementById('mobileMenu');
+function openMobile() {
+  mobileMenu.classList.add('open');
+}
+function closeMobile() {
+  mobileMenu.classList.remove('open');
+}
+document.getElementById('menuClose').onclick = closeMobile;
+
+/* ─── SMOOTH DYNAMIC TEXT INLINE CAROUSEL (ZERO CLIPPING ENGINE) ─── */
+const carouselWords = ['devs', 'PMs', 'leads', 'teams', 'orgs', 'VPs', 'POs'];
+let activeWordIndex = 0;
+const targetSpan = document.getElementById('scramble-word');
+
+setInterval(() => {
+  targetSpan.classList.add('fade-out');
+
+  setTimeout(() => {
+    activeWordIndex = (activeWordIndex + 1) % carouselWords.length;
+    targetSpan.textContent = carouselWords[activeWordIndex];
+    targetSpan.classList.remove('fade-out');
+    targetSpan.classList.add('fade-in');
+    
+    setTimeout(() => {
+      targetSpan.classList.remove('fade-in');
+    }, 300);
+  }, 300);
+}, 2400);
+
+/* ─── AUDIENCE MARQUEE CAROUSEL ─── */
+const audiences = [
+  'Freshers & Career Switchers', 'Engineers → Management', 'Scrum Masters', 'Product Owners',
+  'Mid-level Managers', 'Executives & VPs', 'AI-Anxious Teams', 'HR & L&D Buyers',
+  'Startup Founders', 'Burned-Out Overachievers', 'New to PM', 'Senior Leaders'
+];
+const track = document.getElementById('tickerTrack');
+[...audiences, ...audiences].forEach(a => {
+  const item = document.createElement('div');
+  item.className = 'ticker-item';
+  item.innerHTML = `<span class="dot"></span>${a}`;
+  track.appendChild(item);
+});
+
+/* ─── METRIC COUNT-UP CONTROLLER ─── */
+function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+function animateCount(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1600;
+  const start = performance.now();
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const val = Math.floor(easeOut(progress) * target);
+    el.textContent = val + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target + suffix;
+  }
+  requestAnimationFrame(step);
+}
+
+const counters = document.querySelectorAll('.count-up');
+const metricObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCount(e.target);
+      metricObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => metricObs.observe(c));
+
+/* ─── WORKSHOP FILTER REVEAL CONTROLLER ─── */
+const tabs = document.querySelectorAll('.filter-tab');
+const cards = document.querySelectorAll('.workshop-card');
+const workshopsGrid = document.getElementById('workshopsGrid');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    const filter = tab.dataset.filter;
+    
+    // Smooth transition trigger
+    workshopsGrid.style.opacity = '0';
+    workshopsGrid.style.transform = 'translateY(10px)';
+
+    setTimeout(() => {
+      cards.forEach(card => {
+        const match = card.dataset.category === filter;
+        card.style.display = match ? 'flex' : 'none';
+      });
+      workshopsGrid.classList.add('active');
+      workshopsGrid.style.opacity = '1';
+      workshopsGrid.style.transform = 'translateY(0)';
+    }, 200);
+  });
+});
+
+// Cards stay 100% hidden on load
+cards.forEach(card => {
+  card.style.display = 'none';
+});
+
+/* ─── SCROLL REVEAL TRIGGERS ─── */
+const fadeEls = document.querySelectorAll('.metric-item, .book-card');
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      fadeObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+fadeEls.forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${(i % 4) * 0.08}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${(i % 4) * 0.08}s`;
+  fadeObs.observe(el);
+});
+</script>
+</body>
+</html>
