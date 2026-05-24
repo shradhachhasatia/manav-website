@@ -8,652 +8,157 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<style>
-:root, [data-theme="dark"] {
-  --bg: #090B0F; --bg2: #10141C; --bg3: #171C26;
-  --border: rgba(250, 246, 240, 0.05);
-  --lime: #52B788; --lime-dim: rgba(82, 183, 136, 0.08);
-  --white: #F4F6F4; --muted: #717E77; --muted2: #A5B3AA;
-  --card-shadow: rgba(0, 0, 0, 0.4);
-  --transition-theme: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
-  --sidebar-w: 256px; --bottombar-h: 66px;
-}
-[data-theme="light"] {
-  --bg: #F4F6F4; --bg2: #E8EBE8; --bg3: #FFFFFF;
-  --border: rgba(45, 106, 79, 0.08);
-  --lime: #2D6A4F; --lime-dim: rgba(45, 106, 79, 0.06);
-  --white: #1B2B22; --muted: #62756B; --muted2: #384A40;
-  --card-shadow: rgba(45, 106, 79, 0.03);
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; transition: var(--transition-theme); }
-
-.btn-fill, .btn-outline { display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 1.8rem; border-radius: 4px; text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; }
-.btn-fill { background: var(--lime); color: var(--bg); border: 1px solid var(--lime); }
-[data-theme="dark"] .btn-fill { color: #000; }
-[data-theme="light"] .btn-fill { color: #fff; }
-.btn-fill:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 8px 24px var(--lime-dim); }
-.btn-outline { background: transparent; color: var(--white); border: 1px solid var(--border); }
-.btn-outline:hover { border-color: var(--lime); color: var(--lime); transform: translateY(-2px); }
-
-.theme-toggle { background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--white); padding: 0.5rem; border-radius: 50%; transition: background-color 0.3s ease; }
-.theme-toggle:hover { background-color: var(--border); }
-.theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; }
-[data-theme="dark"] .theme-toggle .sun-icon { display: block; }
-[data-theme="dark"] .theme-toggle .moon-icon { display: none; }
-[data-theme="light"] .theme-toggle .sun-icon { display: none; }
-[data-theme="light"] .theme-toggle .moon-icon { display: block; }
-
-/* APP SHELL */
-.app { display: flex; min-height: 100vh; }
-.app-sidebar { position: fixed; top: 0; left: 0; bottom: 0; width: var(--sidebar-w); background: var(--bg2); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 2rem 1.1rem; z-index: 200; transition: var(--transition-theme); }
-.sb-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; color: var(--white); text-decoration: none; padding: 0.5rem 0.85rem 2.25rem; }
-.sb-logo span { color: var(--lime); }
-.sb-nav { display: flex; flex-direction: column; gap: 0.3rem; }
-.sb-link { display: flex; align-items: center; gap: 0.95rem; padding: 0.85rem 0.85rem; border-radius: 9px; color: var(--muted2); text-decoration: none; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 0.98rem; transition: background-color 0.25s ease, color 0.25s ease; }
-.sb-link svg { width: 20px; height: 20px; stroke: currentColor; fill: none; flex-shrink: 0; stroke-width: 1.8; }
-.sb-link:hover { color: var(--white); background: var(--border); }
-.sb-link.active { color: var(--lime); background: var(--lime-dim); }
-.sb-bottom { margin-top: auto; display: flex; flex-direction: column; gap: 1.25rem; padding: 0.85rem; }
-.sb-social { display: flex; gap: 1.1rem; align-items: center; }
-.sb-social a { color: var(--muted); display: inline-flex; transition: color 0.3s ease, transform 0.3s ease; }
-.sb-social a:hover { color: var(--white); transform: translateY(-2px); }
-.sb-social svg { width: 20px; height: 20px; fill: currentColor; }
-.sb-meta { font-size: 0.7rem; color: var(--muted); line-height: 1.5; }
-.sb-meta a { color: var(--muted); }
-
-.app-bottombar { display: none; position: fixed; bottom: 0; left: 0; right: 0; height: var(--bottombar-h); background: var(--bg2); border-top: 1px solid var(--border); z-index: 200; align-items: stretch; justify-content: space-around; padding-bottom: env(safe-area-inset-bottom); transition: var(--transition-theme); }
-.bb-link { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--muted); text-decoration: none; cursor: pointer; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
-.bb-link svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
-.bb-link.active { color: var(--lime); }
-
-.app-main { flex: 1; margin-left: var(--sidebar-w); min-height: 100vh; min-width: 0; }
-.mobile-theme { display: none; position: fixed; top: 1.1rem; right: 1.1rem; z-index: 210; background: var(--bg2); border: 1px solid var(--border); border-radius: 50%; }
-
-/* VIEW SWITCHER */
-.view:not(.active) { display: none !important; }
-.view.active { animation: viewIn 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
-@keyframes viewIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
-/* HOME (Level 1) */
-.home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 4.5rem 4rem; gap: 2.5rem; }
-.home-top { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 3.5rem; align-items: center; }
-.home-intro { display: flex; flex-direction: column; gap: 1.5rem; }
-.home-tag { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lime); }
-.home-headline { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 5.5vw, 4.8rem); line-height: 1.04; letter-spacing: -0.03em; color: var(--white); max-width: 16ch; }
-.carousel-inline-box { display: inline-flex; justify-content: flex-start; align-items: center; min-width: 110px; }
-.carousel-word-highlight { color: var(--lime); font-weight: 800; display: inline-block; transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-.carousel-word-highlight.fade-out { opacity: 0; transform: translateY(-5px); }
-.carousel-word-highlight.fade-in { opacity: 1; transform: translateY(0); }
-.home-sub { font-size: 1.02rem; line-height: 1.7; color: var(--muted2); max-width: 46ch; font-weight: 300; }
-.home-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
-.home-stat { display: flex; flex-direction: column; gap: 0.2rem; }
-.home-stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.9rem; color: var(--white); line-height: 1; }
-.home-stat-lbl { font-size: 0.68rem; color: var(--muted); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-.home-photo { position: relative; display: flex; justify-content: center; align-items: center; }
-.home-photo .photo-backdrop { position: absolute; inset: 0; z-index: 1; opacity: 0.45; color: var(--lime); display: flex; align-items: center; justify-content: center; transform: scale(1.3); }
-.home-photo .photo-backdrop svg { width: 100%; height: 100%; }
-.home-photo img { position: relative; z-index: 2; width: 78%; height: auto; pointer-events: none; }
-
-.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-.pillar { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.9rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; text-decoration: none; color: inherit; cursor: pointer; position: relative; box-shadow: 0 4px 15px var(--card-shadow); transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
-.pillar:hover { border-color: var(--lime); transform: translateY(-5px); box-shadow: 0 14px 30px var(--card-shadow); }
-.pillar-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--lime); }
-.pillar-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.4rem; letter-spacing: -0.02em; color: var(--white); line-height: 1.1; }
-.pillar-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-.chip { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.02em; color: var(--muted2); border: 1px solid var(--border); background: var(--bg); padding: 0.3rem 0.65rem; border-radius: 99px; }
-.pillar-go { margin-top: auto; display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); transition: gap 0.3s ease; }
-.pillar:hover .pillar-go { gap: 0.85rem; }
-
-/* LEVEL 2 TEASER VIEWS */
-.level2 { max-width: 1040px; padding: 6rem 4rem; display: flex; flex-direction: column; gap: 2rem; }
-.l2-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); display: flex; align-items: center; gap: 0.75rem; }
-.l2-eyebrow::after { content: ''; flex: 0 0 32px; height: 1px; background: var(--lime); }
-.l2-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2.1rem, 4.5vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--white); }
-.l2-title em { color: var(--muted); font-style: italic; font-weight: 400; }
-.l2-lead { font-size: 1.1rem; line-height: 1.8; color: var(--muted2); max-width: 60ch; font-weight: 300; }
-.l2-lead strong { color: var(--white); font-weight: 500; }
-.l2-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 0.5rem; }
-.l2-cats { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-.l2-cat { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; background: var(--bg2); border: 1px solid var(--border); border-radius: 99px; padding: 0.7rem 1.2rem; color: var(--white); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: border-color 0.3s ease, transform 0.3s ease; }
-.l2-cat:hover { border-color: var(--lime); transform: translateY(-2px); }
-.l2-cat .count { font-size: 0.72rem; color: var(--bg); background: var(--lime); padding: 0.15rem 0.5rem; border-radius: 99px; font-weight: 700; }
-[data-theme="dark"] .l2-cat .count { color: #000; }
-
-.books-shelf-wrapper { overflow-x: auto; padding: 1.5rem 0.25rem; scrollbar-width: thin; }
-.books-shelf-wrapper::-webkit-scrollbar { height: 4px; }
-.books-shelf-wrapper::-webkit-scrollbar-track { background: var(--bg); }
-.books-shelf-wrapper::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
-.books-shelf { display: flex; gap: 2.5rem; width: max-content; }
-.book-visual { perspective: 1000px; display: flex; }
-.book-spine-cover { width: 130px; height: 190px; position: relative; border-radius: 2px 6px 6px 2px; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 6px 10px 24px rgba(0, 0, 0, 0.35); }
-.book-spine-cover::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: rgba(0,0,0,0.18); z-index: 5; border-radius: 2px 0 0 2px; }
-.book-visual:hover .book-spine-cover { transform: rotateY(-18deg) rotateX(6deg) translateY(-4px); box-shadow: 12px 16px 32px rgba(0, 0, 0, 0.45); }
-.book1 { background: linear-gradient(135deg, #1A3F33 0%, #2D5A47 100%); border-right: 2px solid #365C4B; }
-.book2 { background: linear-gradient(135deg, #3B2016 0%, #5C3322 100%); border-right: 2px solid #5C3322; }
-.book3 { background: linear-gradient(135deg, #1C334A 0%, #2B4E70 100%); border-right: 2px solid #2B4E70; }
-.book4 { background: linear-gradient(135deg, #2D1A3F 0%, #472B63 100%); border-right: 2px solid #472B63; }
-.book-title-overlay { padding: 1.25rem; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
-.book-brand-label { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); }
-.book-hero-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; font-weight: 700; color: #FAF8F5; line-height: 1.3; }
-.book-cover-meta { font-size: 0.6rem; color: rgba(250, 246, 240, 0.6); font-family: 'Plus Jakarta Sans', sans-serif; font-style: italic; }
-
-.l2-formats { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-.l2-format { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.4rem; min-width: 150px; transition: border-color 0.3s ease, transform 0.3s ease; }
-.l2-format:hover { border-color: var(--lime); transform: translateY(-3px); }
-.l2-format-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.02rem; color: var(--white); }
-.l2-format-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
-
-/* CONTACT */
-.contact-view { max-width: 900px; padding: 6rem 4rem; display: flex; flex-direction: column; gap: 2.5rem; }
-.contact-form-wrapper { max-width: 560px; }
-.contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-.form-input, .form-textarea { width: 100%; background: var(--bg2); border: 1px solid var(--border); color: var(--white); padding: 1rem 1.25rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; transition: border-color 0.3s ease; }
-.form-input:focus, .form-textarea:focus { outline: none; border-color: var(--lime); }
-.form-submit-btn { justify-content: center; width: 100%; border: 1px solid var(--lime) !important; background-color: var(--lime) !important; color: var(--bg) !important; }
-.proof-strip { display: flex; flex-direction: column; gap: 1.25rem; }
-.proof-quote { font-size: 0.95rem; line-height: 1.7; color: var(--muted2); font-style: italic; border-left: 2px solid var(--lime); padding-left: 1.1rem; }
-.proof-quote strong { color: var(--white); font-style: normal; }
-
-/* LEVEL 3 FULL DETAIL VIEWS */
-.detail { padding: 0 0 4rem; }
-.page-hero { padding: 5rem 4rem 3.5rem; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 1.4rem; max-width: 1000px; }
-.page-hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 6vw, 4rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--white); }
-.page-hero h1 em { color: var(--muted); font-style: italic; font-weight: 400; }
-.page-hero p { font-size: 1.05rem; line-height: 1.8; color: var(--muted2); max-width: 64ch; font-weight: 300; }
-.breadcrumb { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-.breadcrumb a { color: var(--lime); text-decoration: none; cursor: pointer; }
-.breadcrumb a:hover { text-decoration: underline; }
-.section { padding: 4.5rem 4rem; max-width: 1100px; }
-.section-header { margin-bottom: 3rem; }
-.section-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 1.1rem; display: flex; align-items: center; gap: 0.75rem; }
-.section-eyebrow::after { content: ''; flex: 0 0 32px; height: 1px; background: var(--lime); }
-.section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--white); }
-.section-title em { color: var(--muted); font-style: italic; font-weight: 400; }
-
-.workshops-split { display: grid; grid-template-columns: 0.6fr 1.4fr; gap: 4rem; align-items: start; }
-.filter-tabs { display: flex; flex-direction: column; gap: 1.1rem; border-left: 2px solid var(--border); padding-left: 1.5rem; }
-.filter-tab { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.02em; color: var(--muted); background: transparent; border: none; cursor: pointer; padding: 0.5rem 0; text-align: left; position: relative; transition: color 0.3s ease, transform 0.3s ease; display: flex; justify-content: space-between; align-items: center; }
-.filter-tab::before { content: ''; position: absolute; left: -1.6rem; top: 0; bottom: 0; width: 3px; background: var(--lime); transform: scaleY(0); transition: transform 0.3s ease; }
-.filter-tab.active { color: var(--white); transform: translateX(4px); }
-.filter-tab.active::before { transform: scaleY(1); }
-.filter-tab:hover { color: var(--white); }
-.filter-tab .tab-count { font-size: 0.7rem; font-weight: 600; color: var(--muted); background: var(--border); padding: 0.2rem 0.5rem; border-radius: 99px; transition: color 0.3s ease; }
-.filter-tab.active .tab-count { color: var(--bg); background: var(--lime); }
-[data-theme="dark"] .filter-tab.active .tab-count { color: #000; }
-.workshops-container { position: relative; min-height: 400px; }
-.workshops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.workshops-grid.active { opacity: 1; transform: translateY(0); }
-.workshop-card { background: var(--bg2); border: 1px solid var(--border); padding: 2.5rem; border-radius: 8px; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: 0 4px 15px var(--card-shadow); transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
-.workshop-card:hover { border-color: var(--lime); transform: translateY(-4px); box-shadow: 0 10px 25px var(--card-shadow); }
-.wcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
-.wcard-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); background: var(--lime); padding: 0.4rem 0.8rem; border-radius: 2px; flex-shrink: 0; }
-[data-theme="dark"] .wcard-tag { color: var(--bg); }
-.wcard-duration { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-top: 0.35rem; }
-.wcard-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; color: var(--white); }
-.wcard-desc { font-size: 0.9rem; line-height: 1.75; color: var(--muted2); font-weight: 300; }
-.wcard-tools { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
-.tool-badge { font-size: 0.72rem; font-weight: 700; background: var(--border); border: 1px solid rgba(245, 242, 235, 0.05); padding: 0.35rem 0.75rem; border-radius: 4px; color: var(--white); display: inline-flex; align-items: center; gap: 0.35rem; }
-[data-theme="light"] .tool-badge { border-color: rgba(28, 29, 33, 0.04); }
-.wcard-perspective { font-size: 0.85rem; color: var(--muted); font-style: italic; border-left: 2px solid var(--lime); padding-left: 1rem; margin-top: 0.5rem; line-height: 1.65; }
-.wcard-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1.25rem; border-top: 1px solid var(--border); }
-.wcard-level { font-size: 0.72rem; color: var(--muted); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-.wcard-arrow { color: var(--lime); font-size: 1rem; transition: transform 0.3s ease; }
-.workshop-card:hover .wcard-arrow { transform: translateX(6px); }
-
-.book-detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem 3.5rem; }
-.book-detail-row { display: grid; grid-template-columns: 130px 1fr; gap: 2.5rem; align-items: start; }
-.book-detail-body { display: flex; flex-direction: column; gap: 1rem; }
-.book-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.35rem; color: var(--white); line-height: 1.35; }
-.book-sub { font-size: 0.9rem; color: var(--muted2); line-height: 1.7; font-weight: 300; }
-.book-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: auto; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); text-decoration: none; transition: gap 0.3s ease; }
-.book-link:hover { gap: 0.85rem; }
-
-.comedy-formats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-.comedy-card { background: var(--bg2); border: 1px solid var(--border); padding: 2.5rem; border-radius: 10px; display: flex; flex-direction: column; gap: 1rem; box-shadow: 0 4px 15px var(--card-shadow); transition: border-color 0.3s ease, transform 0.3s ease; }
-.comedy-card:hover { border-color: var(--lime); transform: translateY(-4px); }
-.comedy-card .wcard-tag { align-self: flex-start; }
-.comedy-card-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--white); }
-.comedy-card-desc { font-size: 0.92rem; line-height: 1.75; color: var(--muted2); font-weight: 300; }
-
-.cta-section { padding: 5rem 4rem; max-width: 900px; }
-.cta-headline { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--white); margin-bottom: 1.5rem; }
-.cta-sub { font-size: 1.05rem; line-height: 1.8; color: var(--muted2); max-width: 520px; margin: 0 0 2.5rem; font-weight: 300; }
-
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-/* RESPONSIVE */
-@media (max-width: 960px) {
-  .app-sidebar { display: none; }
-  .app-bottombar { display: flex; }
-  .app-main { margin-left: 0; padding-bottom: var(--bottombar-h); }
-  .mobile-theme { display: flex; }
-  .home { padding: 5.5rem 1.5rem 3rem; gap: 2.5rem; justify-content: flex-start; min-height: auto; }
-  .home-top { grid-template-columns: 1fr; gap: 2rem; }
-  .home-photo { display: none; }
-  .home-headline { font-size: clamp(2.4rem, 9vw, 3.4rem); }
-  .pillars { grid-template-columns: 1fr; gap: 1rem; }
-  .level2 { padding: 5.5rem 1.5rem 3rem; }
-  .contact-view { padding: 5.5rem 1.5rem 3rem; }
-  .page-hero { padding: 5.5rem 1.5rem 3rem; }
-  .section { padding: 3.5rem 1.5rem; }
-  .cta-section { padding: 4rem 1.5rem; }
-  .workshops-split { grid-template-columns: 1fr; gap: 2.5rem; }
-  .filter-tabs { flex-direction: column; }
-  .workshops-grid { grid-template-columns: 1fr; }
-  .book-detail-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .comedy-formats { grid-template-columns: 1fr; gap: 1.25rem; }
-}
-@media (max-width: 600px) {
-  .home-stats { gap: 1.5rem; }
-  .book-detail-row { grid-template-columns: 90px 1fr; gap: 1.25rem; }
-}
-</style>
+<link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
 
-<button class="theme-toggle mobile-theme" aria-label="Toggle Theme">
-  <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-  <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-</button>
+<header class="topbar">
+  <a class="logo" href="/">MANAV<span>.</span></a>
+  <button class="theme-toggle" aria-label="Toggle Theme">
+    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+  </button>
+</header>
 
-<div class="app">
-
-  <aside class="app-sidebar">
-    <a class="sb-logo" href="#home">MANAV<span>.</span></a>
-    <nav class="sb-nav">
-      <a class="sb-link active" href="#home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg> Home</a>
-      <a class="sb-link" href="#workshops"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M12 17v3"/><path d="M8 20h8"/></svg> Workshops</a>
-      <a class="sb-link" href="#books"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M6 17h12"/></svg> Books</a>
-      <a class="sb-link" href="#comedy"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg> Comedy</a>
-      <a class="sb-link" href="#contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Contact</a>
-    </nav>
-    <div class="sb-bottom">
-      <button class="theme-toggle" aria-label="Toggle Theme">
-        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-      </button>
-      <div class="sb-social">
-        <a href="https://www.linkedin.com/in/manavag/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.67c0-.25.015-.51.09-.69.2-.5.65-1 1.41-1 1 0 1.39.75 1.39 1.85v4.51h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
-        <a href="https://medium.com/@manav_agarwal" target="_blank" aria-label="Medium"><svg viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42zm3.04 0c0 3.24-.31 5.87-.7 5.87s-.7-2.63-.7-5.87.31-5.87.7-5.87.7 2.63.7 5.87z"/></svg></a>
-        <a href="https://www.instagram.com/justamanav/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.5.01-4.74.07-.9.04-1.38.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.33-.28.81-.32 1.71-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.04.9.19 1.38.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.33.13.81.28 1.71.32 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.38-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.33.28-.81.32-1.71.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.38-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.33-.13-.81-.28-1.71-.32-1.24-.06-1.59-.07-4.74-.07zM12 6.87A5.13 5.13 0 1 0 12 17.13 5.13 5.13 0 0 0 12 6.87zm0 8.46A3.33 3.33 0 1 1 12 8.67a3.33 3.33 0 0 1 0 6.66zm6.54-8.66a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg></a>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-photo">
+    <div class="photo-wrap">
+      <div class="photo-backdrop">
+        <svg viewBox="0 0 420 360" preserveAspectRatio="xMidYMid meet">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M55 215 C 150 80, 285 80, 372 165" stroke-width="80"/>
+            <path d="M95 285 C 185 200, 285 210, 360 252" stroke-width="44" opacity="0.5"/>
+          </g>
+        </svg>
       </div>
-      <div class="sb-meta">© 2026 Manav Agarwal<br/><a href="https://manavagarwal.com/impressum" target="_blank">Impressum</a></div>
+      <img class="photo-img" src="https://i.postimg.cc/cH6QfR4K/IMG-0171.png" alt="Manav Agarwal"/>
+      <div class="callout c-left">
+        <span class="callout-num">500+</span>
+        <span class="callout-lbl">Participants Trained</span>
+        <svg class="arrow-svg" viewBox="0 0 100 40"><path d="M 10,5 C 35,5 60,15 50,25 C 40,35 25,30 85,25" class="handdrawn-path"/></svg>
+      </div>
+      <div class="callout c-right">
+        <span class="callout-num">15+</span>
+        <span class="callout-lbl">Years of Impact</span>
+        <svg class="arrow-svg" viewBox="0 0 100 40"><path d="M 90,5 C 65,5 40,15 50,25 C 60,35 75,30 15,25" class="handdrawn-path"/></svg>
+      </div>
     </div>
-  </aside>
+  </div>
 
-  <main class="app-main">
+  <div class="hero-content">
+    <span class="hero-tagline">Agile Coach &bull; AI Strategist &bull; Stand-Up Comedian</span>
+    <h1 class="hero-name">Manav Agarwal</h1>
+    <p class="hero-blurb">Aerospace engineer turned Agile coach &amp; comedian. I deconstruct messy org dynamics with system logic, then rebuild team connection with storytelling and humour. No boring slides, no corporate theatre.</p>
+    <div class="hero-actions">
+      <a class="btn-fill" href="/contact">Work With Me</a>
+      <a class="btn-ghost" href="#experience">Experience</a>
+    </div>
+  </div>
+</section>
 
-    <!-- ═══ HOME (Level 1) ═══ -->
-    <section class="view active home" id="home">
-      <div class="home-top">
-        <div class="home-intro">
-          <span class="home-tag">Agile Coach &bull; AI Strategist &bull; Stand-Up Comedian</span>
-          <h1 class="home-headline">I help <span class="carousel-inline-box"><span id="scramble-word" class="carousel-word-highlight">devs</span></span> actually work together.</h1>
-          <p class="home-sub">Aerospace engineer turned Agile coach &amp; comedian. Three things, one mission — pick where you want to start.</p>
-          <div class="home-stats">
-            <div class="home-stat"><span class="home-stat-num">500+</span><span class="home-stat-lbl">Trained</span></div>
-            <div class="home-stat"><span class="home-stat-num">12+</span><span class="home-stat-lbl">Countries</span></div>
-            <div class="home-stat"><span class="home-stat-num">5</span><span class="home-stat-lbl">Books</span></div>
-            <div class="home-stat"><span class="home-stat-num">6x</span><span class="home-stat-lbl">Certified</span></div>
-          </div>
-        </div>
-        <div class="home-photo">
-          <div class="photo-backdrop">
-            <svg viewBox="0 0 200 200" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <pattern id="dotgrid" x="0" y="0" width="13" height="13" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="currentColor"/></pattern>
-                <radialGradient id="dotfade" cx="50%" cy="44%" r="58%"><stop offset="0%" stop-color="#fff" stop-opacity="1"/><stop offset="70%" stop-color="#fff" stop-opacity="0.6"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>
-                <mask id="dotmask"><rect width="200" height="200" fill="url(#dotfade)"/></mask>
-              </defs>
-              <rect width="200" height="200" fill="url(#dotgrid)" mask="url(#dotmask)"/>
-            </svg>
-          </div>
-          <img src="https://i.postimg.cc/cH6QfR4K/IMG-0171.png" alt="Manav Agarwal"/>
-        </div>
-      </div>
-      <div class="pillars">
-        <a class="pillar" href="#workshops">
-          <span class="pillar-num">01</span><span class="pillar-title">Workshops</span>
-          <span class="pillar-chips"><span class="chip">Agile</span><span class="chip">SAFe®</span><span class="chip">AI for PMs</span><span class="chip">Career</span></span>
-          <span class="pillar-go">Explore →</span>
-        </a>
-        <a class="pillar" href="#books">
-          <span class="pillar-num">02</span><span class="pillar-title">Books</span>
-          <span class="pillar-chips"><span class="chip">Author</span><span class="chip">When Sally Met…</span><span class="chip">5 titles</span></span>
-          <span class="pillar-go">Explore →</span>
-        </a>
-        <a class="pillar" href="#comedy">
-          <span class="pillar-num">03</span><span class="pillar-title">Comedy</span>
-          <span class="pillar-chips"><span class="chip">Stand-up</span><span class="chip">Corporate</span><span class="chip">Clubs</span></span>
-          <span class="pillar-go">Explore →</span>
-        </a>
-      </div>
-    </section>
+<!-- ═══ STATS BAR ═══ -->
+<section class="stats">
+  <div class="stat"><span class="stat-num">500<span>+</span></span><span class="stat-desc">Professionals<br>Trained</span></div>
+  <div class="stat"><span class="stat-num">12<span>+</span></span><span class="stat-desc">Countries<br>Reached</span></div>
+  <div class="stat"><span class="stat-num">5</span><span class="stat-desc">Books<br>Published</span></div>
+  <div class="stat"><span class="stat-num">6<span>x</span></span><span class="stat-desc">Certified<br>Coach</span></div>
+</section>
 
-    <!-- ═══ WORKSHOPS — Level 2 teaser ═══ -->
-    <section class="view level2" id="workshops">
-      <span class="l2-eyebrow">What I Teach</span>
-      <h2 class="l2-title">Workshops that <em>don't</em> put people to sleep.</h2>
-      <p class="l2-lead">Official <strong>SAFe® certifications</strong>, Agile &amp; Scrum, AI for project managers, and career transitions — each run like a stand-up set, not a slide deck. Teams leave with tools they actually use the next Monday. Pick a track to dive in:</p>
-      <div class="l2-cats">
-        <span class="l2-cat" data-cat="implementation">Implementation <span class="count">2</span></span>
-        <span class="l2-cat" data-cat="safe">SAFe® Cert <span class="count">3</span></span>
-        <span class="l2-cat" data-cat="career">Career <span class="count">2</span></span>
-        <span class="l2-cat" data-cat="ai">AI &amp; PM <span class="count">1</span></span>
-      </div>
-      <div class="l2-actions">
-        <a class="btn-fill" href="#workshops-full">Explore all 8 workshops →</a>
-        <a class="btn-outline" href="#contact">Book a workshop</a>
-      </div>
-    </section>
+<!-- ═══ EXPERIENCE (timeline / roadmap) ═══ -->
+<section class="experience" id="experience">
+  <div class="section-head">
+    <span class="section-eyebrow">The Journey</span>
+    <h2 class="section-title">From aerospace<br><em>to the stage.</em></h2>
+    <p class="section-sub">A non-linear path that turned out to be the whole point — engineering rigour, agile leadership, and a microphone.</p>
+  </div>
 
-    <!-- ═══ WORKSHOPS — Level 3 full detail ═══ -->
-    <section class="view detail" id="workshops-full">
-      <header class="page-hero">
-        <p class="breadcrumb"><a href="#workshops">← Workshops overview</a></p>
-        <p class="section-eyebrow">All Workshops</p>
-        <h1>Eight workshops.<br>Zero corporate theater.</h1>
-        <p>Filter by track. Each is run like a stand-up set — high energy, real tools, and the unwritten politics nobody puts in the workbook.</p>
-      </header>
-      <section class="section">
-        <div class="workshops-split">
-          <div class="filter-tabs" id="filterTabs">
-            <button class="filter-tab" data-filter="implementation">Implementation <span class="tab-count">2</span></button>
-            <button class="filter-tab" data-filter="safe">SAFe® Cert <span class="tab-count">3</span></button>
-            <button class="filter-tab" data-filter="career">Career <span class="tab-count">2</span></button>
-            <button class="filter-tab" data-filter="ai">AI &amp; PM <span class="tab-count">1</span></button>
-          </div>
-          <div class="workshops-container">
-            <div class="workshops-grid" id="workshopsGrid">
-              <div class="workshop-card" data-category="implementation">
-                <div class="wcard-top"><div><div class="wcard-tag">Implementation</div><div class="wcard-duration">2–5 Days</div></div></div>
-                <div class="wcard-title">Project Management Essentials</div>
-                <div class="wcard-desc">Waterfall structure meets Agile flexibility. Stakeholders who don't know what they want, risk mitigation that people actually use, and delivery under pressure — all covered.</div>
-                <div class="wcard-tools"><span class="tool-badge">Jira Board</span><span class="tool-badge">Miro Matrix</span><span class="tool-badge">Strategic Roadmap</span></div>
-                <div class="wcard-perspective">"Psychological Safety for PMs: How to deliver bad news without getting shot."</div>
-                <div class="wcard-footer"><span class="wcard-level">All levels</span><span class="wcard-arrow">→</span></div>
-              </div>
-              <div class="workshop-card" data-category="implementation">
-                <div class="wcard-top"><div><div class="wcard-tag">Implementation</div><div class="wcard-duration">2–3 Days</div></div></div>
-                <div class="wcard-title">The Agile Mindset &amp; Scrum</div>
-                <div class="wcard-desc">Stop doing Agile in name only. We simulate real sprint pressure to teach teams how to prioritise value over paperwork. Standups that actually stand up. Retros people don't dread.</div>
-                <div class="wcard-tools"><span class="tool-badge">Scrum Guides</span><span class="tool-badge">Task Estimation</span><span class="tool-badge">Sprint Retros</span></div>
-                <div class="wcard-perspective">"The No-BS Retrospective: How to get people to speak up when trust is low."</div>
-                <div class="wcard-footer"><span class="wcard-level">Beginners welcome</span><span class="wcard-arrow">→</span></div>
-              </div>
-              <div class="workshop-card" data-category="ai">
-                <div class="wcard-top"><div><div class="wcard-tag">AI &amp; PM</div><div class="wcard-duration">2 Days</div></div></div>
-                <div class="wcard-title">AI-Powered Project Management</div>
-                <div class="wcard-desc">Not a coding class. A strategy session on how to use LLMs to automate grunt work, write better requirements, and push back on unrealistic deadlines — with data.</div>
-                <div class="wcard-tools"><span class="tool-badge">ChatGPT Enterprise</span><span class="tool-badge">Claude AI Workspace</span><span class="tool-badge">Prompt Libraries</span></div>
-                <div class="wcard-perspective">"AI as a Negotiation Partner: Using data to push back on management."</div>
-                <div class="wcard-footer"><span class="wcard-level">PM · Scrum Master · PO</span><span class="wcard-arrow">→</span></div>
-              </div>
-              <div class="workshop-card" data-category="safe">
-                <div class="wcard-top"><div><div class="wcard-tag">SAFe® Cert</div><div class="wcard-duration">2 Days</div></div></div>
-                <div class="wcard-title">Leading SAFe® (SA)</div>
-                <div class="wcard-desc">Official certification. Unofficial insight: the stuff that's not in the workbook. How to apply massive frameworks without crushing your company culture.</div>
-                <div class="wcard-tools"><span class="tool-badge">SAFe Matrix</span><span class="tool-badge">PI planning board</span><span class="tool-badge">Value mapping</span></div>
-                <div class="wcard-perspective">"The Political Shield: Getting Finance, HR, and Legal on board without a revolt."</div>
-                <div class="wcard-footer"><span class="wcard-level">Executives · Leaders</span><span class="wcard-arrow">→</span></div>
-              </div>
-              <div class="workshop-card" data-category="safe">
-                <div class="wcard-top"><div><div class="wcard-tag">SAFe® Cert</div><div class="wcard-duration">2 Days</div></div></div>
-                <div class="wcard-title">SAFe® Scrum Master (SSM)</div>
-                <div class="wcard-desc">Servant leadership in a scaled enterprise isn't the same as in a startup. Facilitation when you have dependencies on five teams and authority over none of them.</div>
-                <div class="wcard-tools"><span class="tool-badge">ART Board</span><span class="tool-badge">Kanban cards</span><span class="tool-badge">Dependency sheets</span></div>
-                <div class="wcard-perspective">"Servant Leadership vs. Being a Doormat: How to say No to protect your team."</div>
-                <div class="wcard-footer"><span class="wcard-level">New &amp; Existing SMs</span><span class="wcard-arrow">→</span></div>
-              </div>
-              <div class="workshop-card" data-category="career">
-                <div class="wcard-top"><div><div class="wcard-tag">Career</div><div class="wcard-duration">1–2 Days</div></div></div>
-                <div class="wcard-title">The Interview Reverse-Engineer</div>
-                <div class="wcard-desc">Stop memorising answers. Start understanding the game. Deconstruct job descriptions, interview the company back, and spot the toxic culture before you sign the contract.</div>
-                <div class="wcard-tools"><span class="tool-badge">Resume Engine</span><span class="tool-badge">Roleplay Matrix</span><span class="tool-badge">Culture Checklist</span></div>
-                <div class="wcard-perspective">"The Red Flag Radar: How to spot a bad manager before you start."</div>
-                <div class="wcard-footer"><span class="wcard-level">All career stages</span><span class="wcard-arrow">→</span></div>
-              </div>
-              <div class="workshop-card" data-category="career">
-                <div class="wcard-top"><div><div class="wcard-tag">Career</div><div class="wcard-duration">2–3 Days</div></div></div>
-                <div class="wcard-title">Practitioner-to-Leader Transition</div>
-                <div class="wcard-desc">The skills that got you here won't get you there. For high-performers moving into management. The hardest part isn't strategy — it's the identity shift.</div>
-                <div class="wcard-tools"><span class="tool-badge">Growth Blueprint</span><span class="tool-badge">EQ Matrix</span><span class="tool-badge">Delegation Systems</span></div>
-                <div class="wcard-perspective">"The Grief of the Expert: How to stop doing the work and start leading people."</div>
-                <div class="wcard-footer"><span class="wcard-level">Senior ICs · New Managers</span><span class="wcard-arrow">→</span></div>
-              </div>
-              <div class="workshop-card" data-category="safe">
-                <div class="wcard-top"><div><div class="wcard-tag">SAFe® Cert</div><div class="wcard-duration">3 Days</div></div></div>
-                <div class="wcard-title">SAFe® PO/PM (POPM)</div>
-                <div class="wcard-desc">Bridge strategy to execution. Write user stories engineers actually understand. Prioritise features in a world where everyone thinks their request is urgent.</div>
-                <div class="wcard-tools"><span class="tool-badge">Grooming Logs</span><span class="tool-badge">Story Mapping</span><span class="tool-badge">WSJF Matrix</span></div>
-                <div class="wcard-perspective">"The Art of the Backlog: Writing stories that comply with physics and deadlines."</div>
-                <div class="wcard-footer"><span class="wcard-level">Product Owners · PMs</span><span class="wcard-arrow">→</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="cta-section">
-        <p class="section-eyebrow">Ready when you are</p>
-        <h2 class="cta-headline">Don't see your exact problem?<br>It's probably what I do best.</h2>
-        <p class="cta-sub">Most engagements are custom-built around what's actually breaking in your team.</p>
-        <a class="btn-fill" href="#contact">Get in touch →</a>
-      </section>
-    </section>
-
-    <!-- ═══ BOOKS — Level 2 teaser ═══ -->
-    <section class="view level2" id="books">
-      <span class="l2-eyebrow">The Library</span>
-      <h2 class="l2-title">Business books written <em>like actual stories.</em></h2>
-      <p class="l2-lead">Most agile books read like a compliance manual. Mine read like fiction. The <strong>When Sally Met…</strong> series teaches Scrum, Kanban and Agile through a story you'll actually finish.</p>
-      <div class="books-shelf-wrapper">
-        <div class="books-shelf">
-          <div class="book-visual"><div class="book-spine-cover book1"><div class="book-title-overlay"><span class="book-brand-label">Vol. 01</span><span class="book-hero-title">When Sally Met Scrum</span><span class="book-cover-meta">M. Agarwal</span></div></div></div>
-          <div class="book-visual"><div class="book-spine-cover book2"><div class="book-title-overlay"><span class="book-brand-label">Vol. 02</span><span class="book-hero-title">When Sally Met Kanban</span><span class="book-cover-meta">M. Agarwal</span></div></div></div>
-          <div class="book-visual"><div class="book-spine-cover book3"><div class="book-title-overlay"><span class="book-brand-label">Vol. 03</span><span class="book-hero-title">When Sally Met Agile</span><span class="book-cover-meta">M. Agarwal</span></div></div></div>
-          <div class="book-visual"><div class="book-spine-cover book4"><div class="book-title-overlay"><span class="book-brand-label">Vol. 04</span><span class="book-hero-title">The Silent Whisper</span><span class="book-cover-meta">M. Agarwal</span></div></div></div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-card">
+        <img class="tl-img" src="https://picsum.photos/seed/manav-aero/640/360" alt="Engineering origins" loading="lazy"/>
+        <div class="tl-body">
+          <span class="tl-step">01 · Origin</span>
+          <h3 class="tl-title">The Aerospace Engineer</h3>
+          <p class="tl-desc">Started where everything is a system, tolerances are tight, and "it works on my machine" gets you grounded. The engineering brain never left.</p>
         </div>
       </div>
-      <div class="l2-actions">
-        <a class="btn-fill" href="#books-full">Browse the full library →</a>
-        <a class="btn-outline" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon</a>
-      </div>
-    </section>
-
-    <!-- ═══ BOOKS — Level 3 full detail ═══ -->
-    <section class="view detail" id="books-full">
-      <header class="page-hero">
-        <p class="breadcrumb"><a href="#books">← Books overview</a></p>
-        <p class="section-eyebrow">The Library</p>
-        <h1>Every title,<br><em>in full.</em></h1>
-        <p>The <em>When Sally Met…</em> series follows one character through the chaos of real teams — so the frameworks stick because you actually care what happens next.</p>
-      </header>
-      <section class="section">
-        <div class="book-detail-grid">
-          <div class="book-detail-row">
-            <div class="book-visual"><div class="book-spine-cover book1"><div class="book-title-overlay"><span class="book-brand-label">Vol. 01</span><span class="book-hero-title">When Sally Met Scrum</span><span class="book-cover-meta">M. Agarwal</span></div></div></div>
-            <div class="book-detail-body"><div class="book-title">When Sally Met Scrum</div><div class="book-sub">Sally inherits a team drowning in ceremonies that mean nothing — and learns what Scrum is actually for. The perfect first read for anyone who's been "doing Scrum" without knowing why.</div><a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a></div>
-          </div>
-          <div class="book-detail-row">
-            <div class="book-visual"><div class="book-spine-cover book2"><div class="book-title-overlay"><span class="book-brand-label">Vol. 02</span><span class="book-hero-title">When Sally Met Kanban</span><span class="book-cover-meta">M. Agarwal</span></div></div></div>
-            <div class="book-detail-body"><div class="book-title">When Sally Met Kanban</div><div class="book-sub">A journey from chaos to clarity. Sally learns the hard way that being busy doesn't equal being productive — and discovers how visualising work and limiting WIP changes everything.</div><a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a></div>
-          </div>
-          <div class="book-detail-row">
-            <div class="book-visual"><div class="book-spine-cover book3"><div class="book-title-overlay"><span class="book-brand-label">Vol. 03</span><span class="book-hero-title">When Sally Met Agile</span><span class="book-cover-meta">M. Agarwal</span></div></div></div>
-            <div class="book-detail-body"><div class="book-title">When Sally Met Agile</div><div class="book-sub">Sally faces her ultimate challenge: adapting agile beyond a single team. When frameworks collide with politics and budgets, she learns agility is a mindset — not a process you copy-paste.</div><a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a></div>
-          </div>
-          <div class="book-detail-row">
-            <div class="book-visual"><div class="book-spine-cover book4"><div class="book-title-overlay"><span class="book-brand-label">Vol. 04</span><span class="book-hero-title">The Silent Whisper</span><span class="book-cover-meta">M. Agarwal</span></div></div></div>
-            <div class="book-detail-body"><div class="book-title">The Silent Whisper</div><div class="book-sub">A departure from the series. What happens to human connection when automated systems learn our desires before we do? A reflective story about technology, intimacy, and what we quietly give away.</div><a class="book-link" href="https://www.amazon.de/dp/B0DJL2GNPT" target="_blank">Read on Amazon →</a></div>
-          </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-card">
+        <img class="tl-img" src="https://picsum.photos/seed/manav-agile/640/360" alt="Agile coaching" loading="lazy"/>
+        <div class="tl-body">
+          <span class="tl-step">02 · The Pivot</span>
+          <h3 class="tl-title">Into Agile Coaching</h3>
+          <p class="tl-desc">Watched brilliant strategies die because the humans behind them were never brought along. Switched to fixing the system that actually fails — the people one.</p>
         </div>
-      </section>
-      <section class="cta-section">
-        <p class="section-eyebrow">Bulk &amp; corporate orders</p>
-        <h2 class="cta-headline">Want the series<br>for your whole team?</h2>
-        <p class="cta-sub">These books make the perfect pre-read for an Agile rollout. Reach out for bulk orders or a workshop pairing.</p>
-        <a class="btn-fill" href="#contact">Get in touch →</a>
-      </section>
-    </section>
-
-    <!-- ═══ COMEDY — Level 2 teaser ═══ -->
-    <section class="view level2" id="comedy">
-      <span class="l2-eyebrow">On Stage</span>
-      <h2 class="l2-title">The brain that fixes your sprint <em>also tells jokes.</em></h2>
-      <p class="l2-lead">By day I untangle how teams work; by night I turn the absurdity of corporate life into stand-up. Tech, agile, aerospace and meetings-that-could've-been-an-email — it's all material.</p>
-      <div class="l2-formats">
-        <div class="l2-format"><div class="l2-format-title">Corporate &amp; Conference</div><div class="l2-format-sub">Keynote-length, tailored sets</div></div>
-        <div class="l2-format"><div class="l2-format-title">Team Offsites</div><div class="l2-format-sub">Celebrate &amp; roast the chaos</div></div>
-        <div class="l2-format"><div class="l2-format-title">Club &amp; Open Mic</div><div class="l2-format-sub">Catch me on the circuit</div></div>
       </div>
-      <div class="l2-actions">
-        <a class="btn-fill" href="#comedy-full">See comedy gigs →</a>
-        <a class="btn-outline" href="#contact">Book a set</a>
-      </div>
-    </section>
-
-    <!-- ═══ COMEDY — Level 3 full detail ═══ -->
-    <section class="view detail" id="comedy-full">
-      <header class="page-hero">
-        <p class="breadcrumb"><a href="#comedy">← Comedy overview</a></p>
-        <p class="section-eyebrow">On Stage</p>
-        <h1>The same brain that fixes<br>your sprint <em>also tells jokes.</em></h1>
-        <p>I spend my days untangling how teams work — and my nights turning the absurdity of corporate life into stand-up. Tech, agile, aerospace, and the meetings that could've been an email: it's all material.</p>
-      </header>
-      <section class="section">
-        <div class="section-header">
-          <p class="section-eyebrow">Ways to book me</p>
-          <h2 class="section-title">Pick the room.<br><em>I'll bring the laughs.</em></h2>
+    </div>
+    <div class="tl-item">
+      <div class="tl-card">
+        <img class="tl-img" src="https://picsum.photos/seed/manav-team/640/360" alt="Training teams" loading="lazy"/>
+        <div class="tl-body">
+          <span class="tl-step">03 · Scale</span>
+          <h3 class="tl-title">500+ Trained, 12+ Countries</h3>
+          <p class="tl-desc">Workshops, certifications and transformations across continents — for freshers, scrum masters, and VPs who all secretly fear the same Monday.</p>
         </div>
-        <div class="comedy-formats">
-          <div class="comedy-card"><span class="wcard-tag">Corporate</span><div class="comedy-card-title">Corporate &amp; Conference Sets</div><div class="comedy-card-desc">A keynote-length set tailored to your industry. I learn what your teams actually deal with, then make them laugh about it — the perfect ice-breaker for offsites, all-hands and conference evenings.</div></div>
-          <div class="comedy-card"><span class="wcard-tag">Events</span><div class="comedy-card-title">Team Offsites &amp; Celebrations</div><div class="comedy-card-desc">Sprint wrapped? Big launch shipped? A 20–40 minute set that celebrates the team and roasts the chaos they survived. Clean, sharp, and specific to your world.</div></div>
-          <div class="comedy-card"><span class="wcard-tag">Clubs</span><div class="comedy-card-title">Club &amp; Open-Mic Shows</div><div class="comedy-card-desc">Catch me on the open circuit. Observational stand-up on tech, immigration, engineering brain, and why every standup meeting is a small act of theatre.</div></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-card">
+        <img class="tl-img" src="https://picsum.photos/seed/manav-books/640/360" alt="Author" loading="lazy"/>
+        <div class="tl-body">
+          <span class="tl-step">04 · Author</span>
+          <h3 class="tl-title">The When Sally Met… Series</h3>
+          <p class="tl-desc">Five books that teach Scrum, Kanban and Agile as fiction — because frameworks stick when you actually care what happens next.</p>
         </div>
-      </section>
-      <section class="cta-section">
-        <p class="section-eyebrow">Booking</p>
-        <h2 class="cta-headline">Got an event<br>that needs a laugh?</h2>
-        <p class="cta-sub">Tell me the room, the crowd and the occasion — I'll put together a set that lands.</p>
-        <a class="btn-fill" href="#contact">Book Manav →</a>
-      </section>
-    </section>
-
-    <!-- ═══ CONTACT ═══ -->
-    <section class="view contact-view" id="contact">
-      <span class="l2-eyebrow">Ready when you are</span>
-      <h2 class="l2-title">Tell me what's broken.<br>I'll tell you how to fix it.</h2>
-      <div class="proof-strip">
-        <p class="proof-quote">"Manav was the first coach who explained empathy using <strong>logic I could actually respect.</strong>" — Lead Backend Engineer</p>
-        <p class="proof-quote">"He taught us how SAFe <strong>actually works when you have budget cuts and angry stakeholders.</strong>" — Release Train Engineer</p>
       </div>
-      <div class="contact-form-wrapper">
-        <form class="contact-form" action="https://formspree.io/f/placeholder" method="POST">
-          <div class="form-row">
-            <input type="text" name="name" class="form-input" placeholder="Your Name" required/>
-            <input type="email" name="email" class="form-input" placeholder="Email Address" required/>
-          </div>
-          <textarea name="message" class="form-textarea" rows="4" placeholder="Tell me what's broken in your team..." required></textarea>
-          <button type="submit" class="btn-fill form-submit-btn">Send Message →</button>
-        </form>
+    </div>
+    <div class="tl-item">
+      <div class="tl-card">
+        <img class="tl-img" src="https://picsum.photos/seed/manav-stage/640/360" alt="On stage" loading="lazy"/>
+        <div class="tl-body">
+          <span class="tl-step">05 · On Stage</span>
+          <h3 class="tl-title">Stand-Up Comedian</h3>
+          <p class="tl-desc">The same brain that fixes your sprint now turns corporate absurdity into stand-up — on conference stages and in comedy clubs alike.</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-  </main>
+<!-- ═══ ENTRY ICON SQUARES ═══ -->
+<section class="entries">
+  <div class="entry-grid">
+    <a class="entry" href="/workshops">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M12 17v3"/><path d="M8 20h8"/></svg>
+      <span class="entry-label">Workshops</span>
+    </a>
+    <a class="entry" href="/books">
+      <svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M6 17h12"/></svg>
+      <span class="entry-label">Books</span>
+    </a>
+    <a class="entry" href="/comedy">
+      <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>
+      <span class="entry-label">Comedy</span>
+    </a>
+    <a class="entry" href="/contact">
+      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      <span class="entry-label">Contact</span>
+    </a>
+  </div>
+</section>
 
-  <nav class="app-bottombar">
-    <a class="bb-link active" href="#home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</a>
-    <a class="bb-link" href="#workshops"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M12 17v3"/><path d="M8 20h8"/></svg>Workshops</a>
-    <a class="bb-link" href="#books"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M6 17h12"/></svg>Books</a>
-    <a class="bb-link" href="#comedy"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>Comedy</a>
-    <a class="bb-link" href="#contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</a>
-  </nav>
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="footer-socials">
+    <a href="https://www.linkedin.com/in/manavag/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.67c0-.25.015-.51.09-.69.2-.5.65-1 1.41-1 1 0 1.39.75 1.39 1.85v4.51h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+    <a href="https://www.instagram.com/justamanav/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.5.01-4.74.07-.9.04-1.38.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.33-.28.81-.32 1.71-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.04.9.19 1.38.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.33.13.81.28 1.71.32 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.38-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.33.28-.81.32-1.71.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.38-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.33-.13-.81-.28-1.71-.32-1.24-.06-1.59-.07-4.74-.07zM12 6.87A5.13 5.13 0 1 0 12 17.13 5.13 5.13 0 0 0 12 6.87zm0 8.46A3.33 3.33 0 1 1 12 8.67a3.33 3.33 0 0 1 0 6.66zm6.54-8.66a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg></a>
+    <a href="https://medium.com/@manav_agarwal" target="_blank" aria-label="Medium"><svg viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42zm3.04 0c0 3.24-.31 5.87-.7 5.87s-.7-2.63-.7-5.87.31-5.87.7-5.87.7 2.63.7 5.87z"/></svg></a>
+  </div>
+  <p class="footer-copy">© 2026 Manav Agarwal. Corporate boredom not found.</p>
+</footer>
 
-</div>
-
-<script>
-/* THEME */
-const themeToggles = document.querySelectorAll('.theme-toggle');
-document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
-themeToggles.forEach(t => t.addEventListener('click', () => {
-  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-}));
-
-/* VIEW ROUTER */
-const views = document.querySelectorAll('.view');
-const navLinks = document.querySelectorAll('.sb-link[href^="#"], .bb-link[href^="#"]');
-function showView(id) {
-  if (!document.getElementById(id)) id = 'home';
-  views.forEach(v => v.classList.toggle('active', v.id === id));
-  const base = id.replace(/-full$/, '');
-  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + base));
-  window.scrollTo({ top: 0 });
-}
-
-/* KEYWORD CAROUSEL */
-const targetSpan = document.getElementById('scramble-word');
-if (targetSpan) {
-  const words = ['devs', 'PMs', 'leads', 'teams', 'orgs', 'VPs', 'POs'];
-  let i = 0;
-  setInterval(() => {
-    targetSpan.classList.add('fade-out');
-    setTimeout(() => {
-      i = (i + 1) % words.length;
-      targetSpan.textContent = words[i];
-      targetSpan.classList.remove('fade-out');
-      targetSpan.classList.add('fade-in');
-      setTimeout(() => targetSpan.classList.remove('fade-in'), 300);
-    }, 300);
-  }, 2400);
-}
-
-/* WORKSHOP FILTER */
-const tabs = document.querySelectorAll('.filter-tab');
-const workshopsGrid = document.getElementById('workshopsGrid');
-const cards = document.querySelectorAll('.workshop-card');
-function applyFilter(filter) {
-  workshopsGrid.style.opacity = '0';
-  workshopsGrid.style.transform = 'translateY(10px)';
-  setTimeout(() => {
-    cards.forEach(card => { card.style.display = card.dataset.category === filter ? 'flex' : 'none'; });
-    workshopsGrid.classList.add('active');
-    workshopsGrid.style.opacity = '1';
-    workshopsGrid.style.transform = 'translateY(0)';
-  }, 200);
-}
-function activate(tab) {
-  tabs.forEach(t => t.classList.remove('active'));
-  tab.classList.add('active');
-  applyFilter(tab.dataset.filter);
-}
-if (tabs.length && workshopsGrid) {
-  tabs.forEach(tab => tab.addEventListener('click', () => activate(tab)));
-  activate(tabs[0]);
-}
-
-/* Category chips in the workshops teaser → open full view at that track */
-let pendingCat = null;
-function maybeActivatePending() {
-  if (pendingCat) {
-    const t = [...tabs].find(x => x.dataset.filter === pendingCat);
-    if (t) activate(t);
-    pendingCat = null;
-  }
-}
-document.querySelectorAll('.l2-cat[data-cat]').forEach(c => c.addEventListener('click', () => {
-  pendingCat = c.dataset.cat;
-  if (location.hash === '#workshops-full') { maybeActivatePending(); }
-  else { location.hash = 'workshops-full'; }
-}));
-
-window.addEventListener('hashchange', () => { showView((location.hash || '#home').slice(1)); maybeActivatePending(); });
-showView((location.hash || '#home').slice(1));
-maybeActivatePending();
-</script>
+<script src="app.js"></script>
 </body>
 </html>

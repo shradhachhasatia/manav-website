@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Stand-Up Comedy — Manav Agarwal</title>
+<meta name="description" content="Corporate stand-up and event sets that make tech, agile and office life genuinely funny — keynotes, team offsites and clubs."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="/">MANAV<span>.</span></a>
+  <button class="theme-toggle" aria-label="Toggle Theme">
+    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+  </button>
+</header>
+
+<main class="page">
+  <div class="page-hero">
+    <span class="section-eyebrow">On Stage</span>
+    <h1>The same brain that fixes<br>your sprint <em>also tells jokes.</em></h1>
+    <p>I spend my days untangling how teams work — and my nights turning the absurdity of corporate life into stand-up. Tech, agile, aerospace, and the meetings that could've been an email: it's all material.</p>
+  </div>
+
+  <div class="comedy-formats">
+    <div class="comedy-card"><span class="wcard-tag">Corporate</span><div class="comedy-card-title">Corporate &amp; Conference Sets</div><div class="comedy-card-desc">A keynote-length set tailored to your industry. I learn what your teams actually deal with, then make them laugh about it — the perfect ice-breaker for offsites, all-hands and conference evenings.</div></div>
+    <div class="comedy-card"><span class="wcard-tag">Events</span><div class="comedy-card-title">Team Offsites &amp; Celebrations</div><div class="comedy-card-desc">Sprint wrapped? Big launch shipped? A 20–40 minute set that celebrates the team and roasts the chaos they survived. Clean, sharp, and specific to your world.</div></div>
+    <div class="comedy-card"><span class="wcard-tag">Clubs</span><div class="comedy-card-title">Club &amp; Open-Mic Shows</div><div class="comedy-card-desc">Catch me on the open circuit. Observational stand-up on tech, immigration, engineering brain, and why every standup meeting is a small act of theatre.</div></div>
+  </div>
+</main>
+
+<nav class="bottomnav">
+  <button class="bn-item" data-target="workshops"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M12 17v3"/><path d="M8 20h8"/></svg>Workshops</button>
+  <button class="bn-item" data-target="books"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M6 17h12"/></svg>Books</button>
+  <button class="bn-item active" data-target="comedy"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>Comedy</button>
+  <button class="bn-item" data-target="contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</button>
+</nav>
+
+<div class="modal-overlay" id="previewModal">
+  <div class="modal">
+    <span class="modal-grip"></span>
+    <span class="modal-eyebrow"></span>
+    <h3 class="modal-title"></h3>
+    <p class="modal-desc"></p>
+    <div class="modal-chips"></div>
+    <div class="modal-actions">
+      <button class="btn-ghost" data-close type="button">Close</button>
+      <a class="btn-fill modal-explore" href="#">Explore all →</a>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
