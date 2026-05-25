@@ -40,28 +40,28 @@ if (overlay) {
       title: 'Workshops & Certifications',
       desc: 'Eight workshops across SAFe® certification, Agile & Scrum, AI for project managers, and career transitions — each run like a stand-up set, not a slide deck.',
       chips: ['SAFe®', 'Agile', 'AI for PMs', 'Career'],
-      href: '/workshops'
+      href: 'workshops.html'
     },
     books: {
       eyebrow: 'The Library',
       title: 'Books',
       desc: 'Business books written like fiction. The When Sally Met… series teaches Scrum, Kanban and Agile through a story you will actually finish.',
       chips: ['Author', 'When Sally Met…', '5 titles'],
-      href: '/books'
+      href: 'books.html'
     },
     comedy: {
       eyebrow: 'On Stage',
       title: 'Stand-Up Comedy',
       desc: 'Corporate stand-up and event sets that make tech, agile and office life genuinely funny — keynotes, team offsites and club shows.',
       chips: ['Corporate', 'Offsites', 'Clubs'],
-      href: '/comedy'
+      href: 'comedy.html'
     },
     contact: {
       eyebrow: 'Ready when you are',
       title: 'Get in Touch',
       desc: 'Tell me what is broken in your team — Agile, AI, or Monday mornings — and how I can help. Workshops, talks, books or a comedy set.',
       chips: ['Book a workshop', 'Book a set', 'Say hi'],
-      href: '/contact'
+      href: 'contact.html'
     }
   };
 
