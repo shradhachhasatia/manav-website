@@ -14,10 +14,13 @@
 
 <header class="topbar">
   <a class="logo" href="index.html">MANAV<span>.</span></a>
-  <button class="theme-toggle" aria-label="Toggle Theme">
-    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-  </button>
+  <div class="top-right">
+    <a class="top-home" href="index.html"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</a>
+    <button class="theme-toggle" aria-label="Toggle Theme">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+  </div>
 </header>
 
 <main class="page">
@@ -52,20 +55,18 @@
 <div class="dock" id="dock">
   <button class="dock-folder" id="dockFolder" aria-label="Open menu">
     <span class="folder-grid">
-      <span class="fg tile-workshops"></span>
-      <span class="fg tile-books"></span>
-      <span class="fg tile-comedy"></span>
-      <span class="fg tile-contact"></span>
+      <span class="fg tile-workshops"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M12 17v3"/><path d="M8 20h8"/></svg></span>
+      <span class="fg tile-books"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M6 17h12"/></svg></span>
+      <span class="fg tile-comedy"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/></svg></span>
+      <span class="fg tile-contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
     </span>
   </button>
-</div>
-<div class="dock-sheet" id="dockSheet">
-  <div class="dock-apps">
-    <a class="dock-app" href="index.html"><span class="entry-tile tile-home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span class="dock-app-label">Home</span></a>
-    <button class="dock-app" type="button" data-target="workshops"><span class="entry-tile tile-workshops"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M12 17v3"/><path d="M8 20h8"/></svg></span><span class="dock-app-label">Workshops</span></button>
-    <button class="dock-app" type="button" data-target="books"><span class="entry-tile tile-books"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M6 17h12"/></svg></span><span class="dock-app-label">Books</span></button>
-    <button class="dock-app" type="button" data-target="comedy"><span class="entry-tile tile-comedy"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg></span><span class="dock-app-label">Comedy</span></button>
-    <button class="dock-app" type="button" data-target="contact"><span class="entry-tile tile-contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="dock-app-label">Contact</span></button>
+  <div class="dock-row">
+    <a class="dock-app" href="index.html"><span class="mini-tile tile-home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span class="dock-app-label">Home</span></a>
+    <button class="dock-app" type="button" data-target="workshops"><span class="mini-tile tile-workshops"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M12 17v3"/><path d="M8 20h8"/></svg></span><span class="dock-app-label">Workshops</span></button>
+    <button class="dock-app" type="button" data-target="books"><span class="mini-tile tile-books"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M6 17h12"/></svg></span><span class="dock-app-label">Books</span></button>
+    <button class="dock-app" type="button" data-target="comedy"><span class="mini-tile tile-comedy"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg></span><span class="dock-app-label">Comedy</span></button>
+    <button class="dock-app" type="button" data-target="contact"><span class="mini-tile tile-contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="dock-app-label">Contact</span></button>
   </div>
 </div>
 

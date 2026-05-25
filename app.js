@@ -40,13 +40,10 @@ if (tabs.length && workshopsGrid) {
   applyFilter(tabs[0].dataset.filter);
 }
 
-/* ─── APPLE FOLDER DOCK (open/close + auto-hide on scroll) ─── */
+/* ─── APPLE FOLDER DOCK (expands inline + auto-hide on scroll) ─── */
 const dock = document.getElementById('dock');
 const dockFolder = document.getElementById('dockFolder');
-const dockSheet = document.getElementById('dockSheet');
-
-function openSheet() { if (dockSheet) { dockSheet.classList.add('open'); document.body.style.overflow = 'hidden'; } }
-function closeSheet() { if (dockSheet) { dockSheet.classList.remove('open'); document.body.style.overflow = ''; } }
+function closeDock() { if (dock) dock.classList.remove('open'); }
 
 let dockIdle;
 function showDock() {
@@ -54,17 +51,16 @@ function showDock() {
   dock.classList.remove('dock-hidden');
   clearTimeout(dockIdle);
   dockIdle = setTimeout(() => {
-    if (!dockSheet || !dockSheet.classList.contains('open')) dock.classList.add('dock-hidden');
-  }, 2200);
+    if (!dock.classList.contains('open')) dock.classList.add('dock-hidden');
+  }, 2600);
 }
 
-if (dockFolder && dockSheet) {
-  dockFolder.addEventListener('click', () => {
-    dockSheet.classList.contains('open') ? closeSheet() : openSheet();
-    showDock();
-  });
-  dockSheet.addEventListener('click', e => { if (e.target === dockSheet) closeSheet(); });
+if (dockFolder) {
+  dockFolder.addEventListener('click', e => { e.stopPropagation(); dock.classList.toggle('open'); showDock(); });
 }
+document.addEventListener('click', e => {
+  if (dock && dock.classList.contains('open') && !dock.contains(e.target)) closeDock();
+});
 if (dock) {
   ['scroll', 'touchstart', 'wheel'].forEach(ev => window.addEventListener(ev, showDock, { passive: true }));
   showDock();
@@ -133,8 +129,8 @@ if (overlay) {
   }
 
   document.querySelectorAll('.dock-app[data-target]').forEach(btn =>
-    btn.addEventListener('click', () => { closeSheet(); openModal(btn.dataset.target); }));
+    btn.addEventListener('click', () => { closeDock(); openModal(btn.dataset.target); }));
   overlay.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeSheet(); } });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeDock(); } });
 }
