@@ -144,7 +144,7 @@ img { max-width: 100%; display: block; }
 .entry-label { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 0.82rem; letter-spacing: -0.01em; }
 
 /* ─── SITE FOOTER ─── */
-.site-footer { padding: 2.5rem 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 1.25rem; align-items: center; text-align: center; }
+.site-footer { padding: 2.5rem 1.5rem 7rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 1.25rem; align-items: center; text-align: center; }
 .footer-socials { display: flex; gap: 1.5rem; }
 .footer-socials a { color: var(--muted); display: inline-flex; transition: color 0.3s ease, transform 0.3s ease; }
 .footer-socials a:hover { color: var(--white); transform: translateY(-2px); }
@@ -244,11 +244,41 @@ img { max-width: 100%; display: block; }
 .modal-chips .chip { font-size: 0.68rem; font-weight: 600; color: var(--muted2); border: 1px solid var(--border); background: var(--bg); padding: 0.3rem 0.65rem; border-radius: 99px; }
 .modal-actions { display: flex; gap: 0.8rem; margin-top: 0.5rem; }
 .modal-actions .btn-ghost, .modal-actions .btn-fill { flex: 1; }
+.modal-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; filter: grayscale(0.92) contrast(1.05); }
+
+/* ─── PAGE BANNER (Level 3 images) ─── */
+.page-banner { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; border-radius: 16px; filter: grayscale(0.92) contrast(1.05); margin-bottom: 2.25rem; box-shadow: 0 10px 30px var(--card-shadow); }
+
+/* ─── APPLE FOLDER DOCK (fixed bottom, reveal on scroll) ─── */
+.dock { position: fixed; left: 50%; bottom: 1.1rem; transform: translateX(-50%); z-index: 250; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease; }
+.dock.dock-hidden { transform: translate(-50%, 200%); opacity: 0; pointer-events: none; }
+.dock-folder { width: 66px; height: 66px; border-radius: 22px; padding: 9px; cursor: pointer; border: 1px solid var(--border); background: color-mix(in srgb, var(--bg2) 70%, transparent); -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px); box-shadow: 0 14px 34px rgba(0,0,0,0.45); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.dock-folder:hover { transform: translateY(-3px); }
+.dock-folder:active { transform: scale(0.92); }
+.folder-grid { width: 100%; height: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.folder-grid .fg { border-radius: 7px; }
+
+.dock-sheet { position: fixed; inset: 0; z-index: 240; display: flex; align-items: flex-end; justify-content: center; padding: 0 1.25rem 7rem; background: rgba(0,0,0,0.5); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); opacity: 0; pointer-events: none; transition: opacity 0.32s ease; }
+.dock-sheet.open { opacity: 1; pointer-events: auto; }
+.dock-apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem 1rem; width: 100%; max-width: 360px; }
+.dock-app { display: flex; flex-direction: column; align-items: center; gap: 0.55rem; background: none; border: none; cursor: pointer; text-decoration: none; color: var(--white); opacity: 0; transform: translateY(24px) scale(0.78); transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.42s ease; }
+.dock-sheet.open .dock-app { opacity: 1; transform: none; }
+.dock-sheet.open .dock-app:nth-child(1) { transition-delay: 0.02s; }
+.dock-sheet.open .dock-app:nth-child(2) { transition-delay: 0.06s; }
+.dock-sheet.open .dock-app:nth-child(3) { transition-delay: 0.10s; }
+.dock-sheet.open .dock-app:nth-child(4) { transition-delay: 0.14s; }
+.dock-sheet.open .dock-app:nth-child(5) { transition-delay: 0.18s; }
+.dock-app .entry-tile { max-width: 72px; }
+.dock-app:active .entry-tile { transform: scale(0.93); }
+.dock-app-label { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 0.78rem; }
+.tile-home { background: linear-gradient(150deg, #2b303b, #5b6b7a); }
 
 /* ═══════════ RESPONSIVE (tablet / desktop) ═══════════ */
 @media (min-width: 700px) {
   .comedy-formats { grid-template-columns: repeat(3, 1fr); }
   .cred-grid { grid-template-columns: repeat(2, 1fr); }
+  .dock-apps { grid-template-columns: repeat(5, 1fr); max-width: 560px; }
+  .page-banner { aspect-ratio: 3 / 1; }
   .timeline { padding-left: 0; gap: 3rem; }
   .timeline::before { left: 50%; transform: translateX(-50%); }
   .tl-item { width: 50%; }

@@ -40,7 +40,37 @@ if (tabs.length && workshopsGrid) {
   applyFilter(tabs[0].dataset.filter);
 }
 
-/* ─── PREVIEW MODAL (dedicated-page bottom nav) ─── */
+/* ─── APPLE FOLDER DOCK (open/close + auto-hide on scroll) ─── */
+const dock = document.getElementById('dock');
+const dockFolder = document.getElementById('dockFolder');
+const dockSheet = document.getElementById('dockSheet');
+
+function openSheet() { if (dockSheet) { dockSheet.classList.add('open'); document.body.style.overflow = 'hidden'; } }
+function closeSheet() { if (dockSheet) { dockSheet.classList.remove('open'); document.body.style.overflow = ''; } }
+
+let dockIdle;
+function showDock() {
+  if (!dock) return;
+  dock.classList.remove('dock-hidden');
+  clearTimeout(dockIdle);
+  dockIdle = setTimeout(() => {
+    if (!dockSheet || !dockSheet.classList.contains('open')) dock.classList.add('dock-hidden');
+  }, 2200);
+}
+
+if (dockFolder && dockSheet) {
+  dockFolder.addEventListener('click', () => {
+    dockSheet.classList.contains('open') ? closeSheet() : openSheet();
+    showDock();
+  });
+  dockSheet.addEventListener('click', e => { if (e.target === dockSheet) closeSheet(); });
+}
+if (dock) {
+  ['scroll', 'touchstart', 'wheel'].forEach(ev => window.addEventListener(ev, showDock, { passive: true }));
+  showDock();
+}
+
+/* ─── PREVIEW MODAL (Level-2 medium-detail) ─── */
 const overlay = document.getElementById('previewModal');
 if (overlay) {
   const previews = {
@@ -49,6 +79,7 @@ if (overlay) {
       title: 'Workshops & Certifications',
       desc: 'Eight workshops across SAFe® certification, Agile & Scrum, AI for project managers, and career transitions — each run like a stand-up set, not a slide deck.',
       chips: ['SAFe®', 'Agile', 'AI for PMs', 'Career'],
+      img: 'https://picsum.photos/seed/manav-ws-prev/640/360',
       href: 'workshops.html'
     },
     books: {
@@ -56,6 +87,7 @@ if (overlay) {
       title: 'Books',
       desc: 'Business books written like fiction. The When Sally Met… series teaches Scrum, Kanban and Agile through a story you will actually finish.',
       chips: ['Author', 'When Sally Met…', '5 titles'],
+      img: 'https://picsum.photos/seed/manav-bk-prev/640/360',
       href: 'books.html'
     },
     comedy: {
@@ -63,6 +95,7 @@ if (overlay) {
       title: 'Stand-Up Comedy',
       desc: 'Corporate stand-up and event sets that make tech, agile and office life genuinely funny — keynotes, team offsites and club shows.',
       chips: ['Corporate', 'Offsites', 'Clubs'],
+      img: 'https://picsum.photos/seed/manav-cm-prev/640/360',
       href: 'comedy.html'
     },
     contact: {
@@ -70,10 +103,12 @@ if (overlay) {
       title: 'Get in Touch',
       desc: 'Tell me what is broken in your team — Agile, AI, or Monday mornings — and how I can help. Workshops, talks, books or a comedy set.',
       chips: ['Book a workshop', 'Book a set', 'Say hi'],
+      img: 'https://picsum.photos/seed/manav-ct-prev/640/360',
       href: 'contact.html'
     }
   };
 
+  const elImg = overlay.querySelector('.modal-img');
   const elEyebrow = overlay.querySelector('.modal-eyebrow');
   const elTitle = overlay.querySelector('.modal-title');
   const elDesc = overlay.querySelector('.modal-desc');
@@ -83,6 +118,7 @@ if (overlay) {
   function openModal(key) {
     const p = previews[key];
     if (!p) return;
+    if (elImg) elImg.src = p.img;
     elEyebrow.textContent = p.eyebrow;
     elTitle.textContent = p.title;
     elDesc.textContent = p.desc;
@@ -96,9 +132,9 @@ if (overlay) {
     document.body.style.overflow = '';
   }
 
-  document.querySelectorAll('.bn-item[data-target]').forEach(btn =>
-    btn.addEventListener('click', () => openModal(btn.dataset.target)));
+  document.querySelectorAll('.dock-app[data-target]').forEach(btn =>
+    btn.addEventListener('click', () => { closeSheet(); openModal(btn.dataset.target); }));
   overlay.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeSheet(); } });
 }

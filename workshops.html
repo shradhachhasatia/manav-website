@@ -21,6 +21,7 @@
 </header>
 
 <main class="page">
+  <img class="page-banner" src="https://picsum.photos/seed/manav-workshops/1200/600" alt="Workshop in session" loading="lazy"/>
   <div class="page-hero">
     <span class="section-eyebrow">What I Teach</span>
     <h1>Workshops that <em>don't</em> put people to sleep.</h1>
@@ -105,18 +106,32 @@
 </main>
 
 <!-- PERSISTENT BOTTOM NAV -->
-<nav class="bottomnav">
-  <a class="bn-item" href="index.html"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</a>
-  <button class="bn-item active" data-target="workshops"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M12 17v3"/><path d="M8 20h8"/></svg>Workshops</button>
-  <button class="bn-item" data-target="books"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M6 17h12"/></svg>Books</button>
-  <button class="bn-item" data-target="comedy"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>Comedy</button>
-  <button class="bn-item" data-target="contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</button>
-</nav>
+<!-- APPLE FOLDER DOCK -->
+<div class="dock" id="dock">
+  <button class="dock-folder" id="dockFolder" aria-label="Open menu">
+    <span class="folder-grid">
+      <span class="fg tile-workshops"></span>
+      <span class="fg tile-books"></span>
+      <span class="fg tile-comedy"></span>
+      <span class="fg tile-contact"></span>
+    </span>
+  </button>
+</div>
+<div class="dock-sheet" id="dockSheet">
+  <div class="dock-apps">
+    <a class="dock-app" href="index.html"><span class="entry-tile tile-home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span class="dock-app-label">Home</span></a>
+    <button class="dock-app" type="button" data-target="workshops"><span class="entry-tile tile-workshops"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M12 17v3"/><path d="M8 20h8"/></svg></span><span class="dock-app-label">Workshops</span></button>
+    <button class="dock-app" type="button" data-target="books"><span class="entry-tile tile-books"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M6 17h12"/></svg></span><span class="dock-app-label">Books</span></button>
+    <button class="dock-app" type="button" data-target="comedy"><span class="entry-tile tile-comedy"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg></span><span class="dock-app-label">Comedy</span></button>
+    <button class="dock-app" type="button" data-target="contact"><span class="entry-tile tile-contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="dock-app-label">Contact</span></button>
+  </div>
+</div>
 
 <!-- PREVIEW MODAL -->
 <div class="modal-overlay" id="previewModal">
   <div class="modal">
     <span class="modal-grip"></span>
+    <img class="modal-img" alt=""/>
     <span class="modal-eyebrow"></span>
     <h3 class="modal-title"></h3>
     <p class="modal-desc"></p>
