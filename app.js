@@ -7,6 +7,15 @@ themeToggles.forEach(t => t.addEventListener('click', () => {
   localStorage.setItem('theme', next);
 }));
 
+/* ─── SCROLL REVEAL (smooth entrances) ─── */
+const revealEls = document.querySelectorAll('.tl-card, .entry, .cred, .comedy-card, .book-row, .stat, .page-hero, .section-head');
+if (revealEls.length && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => { el.classList.add('reveal'); io.observe(el); });
+}
+
 /* ─── WORKSHOP FILTER (workshops page) ─── */
 const tabs = document.querySelectorAll('.filter-tab');
 const workshopsGrid = document.getElementById('workshopsGrid');
