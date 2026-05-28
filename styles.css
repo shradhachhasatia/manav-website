@@ -208,6 +208,15 @@ img { max-width: 100%; display: block; }
 .page-hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 8vw, 3.6rem); letter-spacing: -0.03em; line-height: 1.04; color: var(--white); }
 .page-hero h1 em { color: var(--muted); font-style: italic; font-weight: 400; }
 .page-hero p { font-size: 1.02rem; line-height: 1.75; color: var(--muted2); max-width: 60ch; font-weight: 300; }
+.breadcrumb { font-size: 0.8rem; }
+.breadcrumb a { color: var(--muted); text-decoration: none; font-weight: 600; letter-spacing: 0.02em; transition: color 0.25s ease; }
+.breadcrumb a:hover { color: var(--lime); }
+
+/* ─── CLOSING CTA (journey) ─── */
+.cta-section { margin-top: 3.5rem; padding: 2.75rem 1.75rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 1.1rem; box-shadow: 0 4px 16px var(--card-shadow); }
+.cta-headline { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 5vw, 2.4rem); letter-spacing: -0.02em; line-height: 1.12; color: var(--white); }
+.cta-sub { font-size: 1rem; line-height: 1.7; color: var(--muted2); font-weight: 300; max-width: 52ch; }
+.cta-section .btn-fill { margin-top: 0.4rem; }
 
 /* ─── WORKSHOPS FILTER ─── */
 .workshops-split { display: flex; flex-direction: column; gap: 2rem; }
