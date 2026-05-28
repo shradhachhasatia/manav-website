@@ -16,6 +16,25 @@ if (revealEls.length && 'IntersectionObserver' in window) {
   revealEls.forEach(el => { el.classList.add('reveal'); io.observe(el); });
 }
 
+/* ─── EXPLORE ACCORDION (one open at a time) ─── */
+const accItems = document.querySelectorAll('.acc-item');
+if (accItems.length) {
+  accItems.forEach(item => {
+    const header = item.querySelector('.acc-header');
+    header.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      accItems.forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.acc-header').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+}
+
 /* ─── WORKSHOP FILTER (workshops page) ─── */
 const tabs = document.querySelectorAll('.filter-tab');
 const workshopsGrid = document.getElementById('workshopsGrid');
