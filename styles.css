@@ -35,8 +35,8 @@ img { max-width: 100%; display: block; }
 .btn-fill, .btn-ghost {
   display: inline-flex; align-items: center; justify-content: center;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 0.95rem 1.7rem; border-radius: 6px; text-decoration: none; cursor: pointer;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 0.7rem 1.35rem; border-radius: 6px; text-decoration: none; cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-fill { background: var(--lime); color: var(--bg); border: 1px solid var(--lime); }
@@ -157,7 +157,7 @@ img { max-width: 100%; display: block; }
 .acc-text { font-size: 0.95rem; line-height: 1.7; color: var(--muted2); font-weight: 300; }
 .acc-img { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; border-radius: 10px; filter: grayscale(0.35) contrast(1.03); }
 .acc-actions { display: flex; }
-.acc-actions .btn-fill { width: 100%; justify-content: center; }
+.acc-actions .btn-fill { align-self: flex-start; }
 
 .book-list { display: flex; flex-direction: column; gap: 1rem; }
 .book-item { display: grid; grid-template-columns: 58px 1fr; gap: 1rem; align-items: center; }
