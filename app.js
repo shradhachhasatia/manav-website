@@ -59,31 +59,17 @@ if (tabs.length && workshopsGrid) {
   applyFilter(tabs[0].dataset.filter);
 }
 
-/* ─── APPLE FOLDER DOCK (expands inline + auto-hide on scroll) ─── */
+/* ─── APPLE FOLDER DOCK (expands inline, always visible) ─── */
 const dock = document.getElementById('dock');
 const dockFolder = document.getElementById('dockFolder');
 function closeDock() { if (dock) dock.classList.remove('open'); }
 
-let dockIdle;
-function showDock() {
-  if (!dock) return;
-  dock.classList.remove('dock-hidden');
-  clearTimeout(dockIdle);
-  dockIdle = setTimeout(() => {
-    if (!dock.classList.contains('open')) dock.classList.add('dock-hidden');
-  }, 2600);
-}
-
 if (dockFolder) {
-  dockFolder.addEventListener('click', e => { e.stopPropagation(); dock.classList.toggle('open'); showDock(); });
+  dockFolder.addEventListener('click', e => { e.stopPropagation(); dock.classList.toggle('open'); });
 }
 document.addEventListener('click', e => {
   if (dock && dock.classList.contains('open') && !dock.contains(e.target)) closeDock();
 });
-if (dock) {
-  ['scroll', 'touchstart', 'wheel'].forEach(ev => window.addEventListener(ev, showDock, { passive: true }));
-  showDock();
-}
 
 /* ─── PREVIEW MODAL (Level-2 medium-detail) ─── */
 const overlay = document.getElementById('previewModal');
@@ -112,14 +98,6 @@ if (overlay) {
       chips: ['Corporate', 'Offsites', 'Clubs'],
       img: 'https://picsum.photos/seed/manav-cm-prev/640/360',
       href: 'comedy.html'
-    },
-    contact: {
-      eyebrow: 'Ready when you are',
-      title: 'Get in Touch',
-      desc: 'Tell me what is broken in your team — Agile, AI, or Monday mornings — and how I can help. Workshops, talks, books or a comedy set.',
-      chips: ['Book a workshop', 'Book a set', 'Say hi'],
-      img: 'https://picsum.photos/seed/manav-ct-prev/640/360',
-      href: 'contact.html'
     }
   };
 
